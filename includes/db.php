@@ -33,6 +33,27 @@ function questionRequest($id, $dbConnection) {
     return $rows;
 }
 
+// a function to check if a row is recorded once; it takes data from createROW
+function recordOnce($answer, $dbConnection){
+    $addRow = "SELECT COUNT(*) FROM questions WHERE answer = :answer";
+    $statment = $dbConnection->prepare($addRow);
+    $statment->bindParam(':answer', $answer);
+    $statment->execute();
+    $fetchTest = $statment->fetchColumn();
+    if ($fetchTest>0){
+        echo ' <br>';
+        echo "There is already a title with name {$answer}";
+        echo ' <br>';
+        return true;
+    } else {
+        echo ' <br>';
+        echo "One line checkin;";
+        echo ' <br>';
+        return false;
+    }
+
+}
+
 
 // function to take all data from a table as an Array; here from questions
 function takeFromTable($dbConnection){
@@ -45,10 +66,19 @@ function takeFromTable($dbConnection){
 
 // function to insert new data to a table according to the query; here insert into answers
 function insertIntoTable($answer, $correctAnswer, $questionId, $dbConnection){
-    $queryInsert = "INSERT INTO `answers`(`answer`, `correct_answer`, `question_id`) VALUES ('$answer', '$correctAnswer', '$questionId')";
-    // all data with 
-    $sqlStatement = $dbConnection->query($queryInsert);
-    $sqlStatement->execute();
+    try {
+        if (recordOnce($answer, $dbConnection)){
+            return;
+        }
+        $queryInsert = "INSERT INTO `answers`(`answer`, `correct_answer`, `question_id`) VALUES ('$answer', '$correctAnswer', '$questionId')";
+        // all data with 
+        $sqlStatement = $dbConnection->query($queryInsert);
+        $sqlStatement->execute();
+        echo "The ROW was created successfully!";
+        echo ' <br>';
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+     }
 }
 
 
