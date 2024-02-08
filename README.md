@@ -11,7 +11,10 @@ Extending the functionality and groom the visual appearance of the first version
 
 
 
-
+### SMTP check for mail-server:
+telnet smtp-relay.brevo.com 587, 2525, or 465
+link :
+https://github.com/PHPMailer/PHPMailer/blob/master/README.md
 
 ### Docker information and commands:
 
