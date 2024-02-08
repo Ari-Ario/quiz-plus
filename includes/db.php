@@ -35,7 +35,7 @@ function questionRequest($id, $dbConnection) {
 
 // a function to check if a row is recorded once; it takes data from createROW
 function recordOnce($answer, $dbConnection){
-    $addRow = "SELECT COUNT(*) FROM questions WHERE answer = :answer";
+    $addRow = "SELECT COUNT(*) FROM answer WHERE answer = :answer";
     $statment = $dbConnection->prepare($addRow);
     $statment->bindParam(':answer', $answer);
     $statment->execute();
@@ -66,15 +66,19 @@ function takeFromTable($dbConnection){
 
 // function to insert new data to a table according to the query; here insert into answers
 function insertIntoTable($answer, $correctAnswer, $questionId, $dbConnection){
+
     try {
-        if (recordOnce($answer, $dbConnection)){
+        // in fall of a duplications, which are not needed, we may need some duplications
+        /* if (recordOnce($answer, $dbConnection)){
             return;
-        }
-        $queryInsert = "INSERT INTO `answers`(`answer`, `correct_answer`, `question_id`) VALUES ('$answer', '$correctAnswer', '$questionId')";
+        } */
+        $queryInsert = "INSERT INTO `answer`(`answer`, `is_correct`, `question_id`) VALUES ('$answer', $correctAnswer, $questionId)";
         // all data with 
         $sqlStatement = $dbConnection->query($queryInsert);
-        $sqlStatement->execute();
-        echo "The ROW was created successfully!";
+        // ->query is equivalant to both ->prepare and ->execute, therefore use either ->query or the other two
+        // $sqlStatement->execute();
+        echo "<p>insertIntoTable: $answer successful</p>";
+        // echo "The ROW was created successfully!";
         echo ' <br>';
     } catch (PDOException $e) {
         echo $e->getMessage();

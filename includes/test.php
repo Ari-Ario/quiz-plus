@@ -14,9 +14,9 @@ foreach ($rows as $key => $data) {
             $answer = $data["answer_$i"];
             $questionId = $data["id"];
             if (str_contains($data['correct'], "$i")){
-                $correctAnswer = '1';
+                $correctAnswer = 1;
             } else {
-                $correctAnswer = '0';
+                $correctAnswer = 0;
             }
         }
         echo "$answer, $correctAnswer, $questionId <br>";
