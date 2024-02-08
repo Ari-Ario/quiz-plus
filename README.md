@@ -1,9 +1,19 @@
 # MySQL exercise with PDO
 
 ## Start
+Extending the functionality and groom the visual appearance of the first version of the Trivia Quiz
+## Mockup :
+
+## Design and Visualization:
+
+## Functionality:
 
 
-### Docker
+
+
+
+
+### Docker information and commands:
 
 1. start the Container:
 
