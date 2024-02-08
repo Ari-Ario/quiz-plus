@@ -20,7 +20,7 @@ foreach ($rows as $key => $data) {
             }
         }
         echo "$answer, $correctAnswer, $questionId <br>";
-        insertIntoTable($answer, $correctAnswer, $questionId, $dbConnection);
+        // insertIntoTable($answer, $correctAnswer, $questionId, $dbConnection);
     }
     echo "--------------------------------------------- <br>";
 }
