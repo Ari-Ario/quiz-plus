@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Jan 30, 2024 at 11:26 AM
+-- Generation Time: Jan 30, 2024 at 01:21 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.8
 
@@ -207,7 +207,17 @@ INSERT INTO `questions` (`id`, `topic`, `question_text`, `answer_1`, `answer_2`,
 (161, 'astronomy', 'What is the hottest planet in our solar system?', 'Mercury', 'Venus', 'Earth', '', '', '2'),
 (162, 'astronomy', 'What is the process of a star dying called?', 'Supernova', 'Black hole', 'Nebula', '', '', '1'),
 (163, 'astronomy', 'What is the name of the force that pulls objects towards each other?', 'Gravity', 'Magnetism', 'Friction', '', '', '1'),
-(164, 'astronomy', 'What are the two types of planets in our solar system?', 'Rocky and Gas giants', 'Terrestrial and Gas giants', 'Earth-like and Gas giants', '', '', '2');
+(164, 'astronomy', 'What are the two types of planets in our solar system?', 'Rocky and Gas giants', 'Terrestrial and Gas giants', 'Earth-like and Gas giants', '', '', '2'),
+(165, 'animals', 'Which animal has the biggest heart in the world?', 'Giraffe', 'Elephant', 'Blue al', 'Kanguru', '', '1'),
+(166, 'animals', 'Which is the fastest animal in the world?', 'cheetah', 'horse', 'ostrich', 'cat', '', '1'),
+(167, 'animals', 'Which animal lives the longest on earth?', 'turtle', 'cobra', 'elephant', 'octopus', '', '1'),
+(168, 'animals', 'Which of the following animal is not a mammal?', 'tiger', 'marsupial', 'fish', 'dog', '', '3'),
+(169, 'animals', 'Which fish needs to come up for air?', 'koi fish', 'snapper', 'grouper', 'skate fish', '', '1'),
+(170, 'animals', 'which animal can only be found in Australia?', 'tiger', 'black swam', 'koala', 'cobra', '', '3'),
+(171, 'animals', 'Which animal has the longest gestation period?', 'african elephant', 'kangoru', 'cat', 'tiger', '', '1'),
+(172, 'animals', 'how long can camel stay without water?', '2 days', '3 days', '8 days', '15 days', '', '4'),
+(173, 'animals', 'which animal does not belong to the cold-blooded animals?', 'reptiles', 'fish', 'insect', 'horse', '', '4'),
+(174, 'animals', 'How long can crocodile go without food?', '5 months', '8 months', '1 year', '3 years', '', '4');
 
 --
 -- Indexes for dumped tables
@@ -227,7 +237,7 @@ ALTER TABLE `questions`
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=165;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=175;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
