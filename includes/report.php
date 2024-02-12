@@ -4,6 +4,7 @@ if (session_status() === PHP_SESSION_NONE){
 }
 include dirname(__DIR__) . "/utils/helper.php";
 // prettyPrint($_SESSION);
+// exit();
 $totalPoints = 0;
 foreach ($_SESSION as $key => $data) {
     if (isset($data['single-choice']) && $data['single-choice'] === "1") {
@@ -13,19 +14,22 @@ foreach ($_SESSION as $key => $data) {
         $counter = 0;
         for ($i = 1; $i <= 5; $i++){
 
-            if (isset($data["answer_$i"]) && $data["answer_$i"] === '1') {
+            if (isset($data["answer"]) && $data["answer"] === '1') {
                 $counter+=1;
-            } else if (isset($data["answer_$i"]) && $data["answer_$i"] === '0') {
+            } else if (isset($data["answer"]) && $data["answer"] === '0') {
                 $counter -=1;
+            } else {
+                $counter += 0;
             }
         }
         $totalPoints += $counter;
     }
 }
 
+
 $procent = round(($totalPoints/(count($_SESSION)-1))*100, 2);
 if ($procent > 100) { $procent = 100; }
-else if  ($procent < 0) { $procent = 0; }
+else if  ($procent < 0) { $procent= $totalPoints = 0; }
 ?>
 
 <!DOCTYPE html>

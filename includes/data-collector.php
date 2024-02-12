@@ -30,9 +30,10 @@ if (str_contains($scriptName, 'index')){
 }
 else if (str_contains($scriptName, 'question')){
     if ($quiz === null){
-        echo "hello";
         $questionNum = intval($_POST['questionNum']);
         $questionIdSequence = fetchQuestionIdSequence($_POST['topic'], $questionNum, $dbConnection);
+        // prettyPrint($questionIdSequence);
+        // exit();
         
         // break the code if the number of questions more than the selected numbers are -- TODO Warning in index
 

@@ -16,34 +16,58 @@ include "data-collector.php";
 </head>
 <body>
 <?php
+
     if (isset($quiz['questionIdSequence'])){
+        // $id = $current_id;
        
         $id = $quiz['questionIdSequence'][$currentQuestionIndex];
     }
-    $question = questionRequest($id, $dbConnection);
+    $question= questionRequest($id, $dbConnection);
+
+// another method to do it 
+/*     $question = Array();
+    foreach($questionIdSequence as $current_id){
+        for ($i=1; $i <= 5; $i++) {
+            $answer = "answer_" . $i;
+            if ($questions['question_id'] === $current_id && $questions['is_correct'] === "1"){
+                array_push($question);
+            }
+        }
+    } */
+
+    // prettyPrint($question);
+    // exit();
 ?>
 <?php include "header.php"; ?>
 <section id="form-quiz">
     <section id="form-container">
         <section class="header-form">
-            <h1><?php echo $question['question_text'] ?></h1>
+            <h1><?php echo $question[0]['question_text'] ?></h1>
         </section>
         <section class="header-form">
             <form action="<?php echo $actionUrl; ?>" method="post">
                 <?php
+                $correct = "";
+                foreach ($question as $key => $value){
+                    if ($value['is_correct'] === "1"){
+                        $correct .= ($key+1) . "," ;
+                    }
+                }
                 // show the answers and compare them with the correct answers
                 // prettyPrint($question);
-                $correct = $question['correct'];
+                // $correct = $question['correct'];
                 $pattern = "/\s*,\s*/";
                 $correctItems = preg_split($pattern, $correct);
+                array_pop($correctItems);
 
                 // a flag for multiple-choice / Checkbox and/or single-choice / radio
-                if (count($correctItems )> 1) $multipleChoice = true;
+                if (count($correctItems) > 1) $multipleChoice = true;
                 else $multipleChoice = false;
                 for ($i = 1; $i <=5; $i++){
-                    $answerColumnName = "answer_" . $i;
-                    if (isset($question[$answerColumnName]) && !empty($question[$answerColumnName])) {
-                        $answerText = $question[$answerColumnName];
+                    $j = $i-1;
+                    $answerColumnName = "answer";
+                    if (isset($question[$j][$answerColumnName]) && !empty($question[$j][$answerColumnName])) {
+                        $answerText = $question[$j][$answerColumnName];
 
                         if (in_array($i, $correctItems)) $value = 1;
                         else $value = 0;

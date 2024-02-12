@@ -19,7 +19,7 @@ try {
 // Query functions
 
 function fetchQuestionIdSequence($topic, $questionNum, $dbConnection) {
-    $query = "SELECT `id` FROM `questions` WHERE `topic` = '$topic' ORDER BY RAND() LIMIT $questionNum";
+    $query = "SELECT `id` FROM `question` WHERE `topic` = '$topic' ORDER BY RAND() LIMIT $questionNum";
     // all data with 
     $sqlStatement = $dbConnection->query($query);
     $rows = $sqlStatement->fetchAll(PDO::FETCH_COLUMN, 0);
@@ -28,11 +28,31 @@ function fetchQuestionIdSequence($topic, $questionNum, $dbConnection) {
 
 function questionRequest($id, $dbConnection) {
     // all data with id
-    $sqlStatement = $dbConnection->query("SELECT * FROM `questions` WHERE `id` = '$id'");
-    $rows = $sqlStatement->fetch(PDO::FETCH_ASSOC); 
+    $query = "SELECT * FROM `question` INNER JOIN `answer` ON question.id = answer.question_id
+    WHERE answer.question_id = $id
+    ORDER BY question.id, RAND(answer.id)";
+    $sqlStatement = $dbConnection->query($query);
+    $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC); 
     return $rows;
 }
 
+
+// function to take all data from a table as an Array; here from questions
+function takeFromTable($dbConnection){
+    $querySelect = "SELECT * FROM `questions`";
+    // all data with 
+    $sqlStatement = $dbConnection->query($querySelect);
+    $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
+
+
+
+
+
+
+//  extra functions to split the table questions into two other tables: question and answer
 // a function to check if a row is recorded once; it takes data from createROW
 function recordOnce($answer, $dbConnection){
     $addRow = "SELECT COUNT(*) FROM answer WHERE answer = :answer";
@@ -52,16 +72,6 @@ function recordOnce($answer, $dbConnection){
         return false;
     }
 
-}
-
-
-// function to take all data from a table as an Array; here from questions
-function takeFromTable($dbConnection){
-    $querySelect = "SELECT * FROM `questions`";
-    // all data with 
-    $sqlStatement = $dbConnection->query($querySelect);
-    $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
 }
 
 // function to insert new data to a table according to the query; here insert into answers
