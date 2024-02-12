@@ -27,9 +27,10 @@ foreach ($_SESSION as $key => $data) {
 }
 
 
-$procent = round(($totalPoints/(count($_SESSION)-1))*100, 2);
+$procent = round(($totalPoints/(count($_SESSION)))*100, 2);
 if ($procent > 100) { $procent = 100; }
 else if  ($procent < 0) { $procent= $totalPoints = 0; }
+// TODO: DATABASE FOR MOST DIFFICULT QUESTIONS AND MOST DIFFICULT TOPICS + JS PIE VISUALIZATION
 ?>
 
 <!DOCTYPE html>

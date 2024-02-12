@@ -24,7 +24,7 @@ include "data-collector.php";
     }
     $question= questionRequest($id, $dbConnection);
 
-// another method to do it 
+// another method to accumulate all in one array 
 /*     $question = Array();
     foreach($questionIdSequence as $current_id){
         for ($i=1; $i <= 5; $i++) {
