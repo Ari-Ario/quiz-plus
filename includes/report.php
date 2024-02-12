@@ -3,6 +3,7 @@ if (session_status() === PHP_SESSION_NONE){
     session_start();
 }
 include dirname(__DIR__) . "/utils/helper.php";
+include "db.php";
 // prettyPrint($_SESSION);
 // exit();
 $totalPoints = 0;
@@ -31,6 +32,11 @@ $procent = round(($totalPoints/(count($_SESSION)))*100, 2);
 if ($procent > 100) { $procent = 100; }
 else if  ($procent < 0) { $procent= $totalPoints = 0; }
 // TODO: DATABASE FOR MOST DIFFICULT QUESTIONS AND MOST DIFFICULT TOPICS + JS PIE VISUALIZATION
+
+// add data in new table for visualization
+$topic = $_SESSION['quiz']['topic'];
+addStatistic($topic, $procent, $dbConnection);
+
 ?>
 
 <!DOCTYPE html>

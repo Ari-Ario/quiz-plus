@@ -47,7 +47,24 @@ function takeFromTable($dbConnection){
 }
 
 
+function addStatistic($topic, $procent, $dbConnection){
+    //first: create a table with columns: `statistic`(`topic_id`, `topic`, `repeated`, `procent`)
 
+    $query = "SELECT * FROM statistic WHERE topic = '$topic'";
+    $sqlStatement = $dbConnection->query($query);
+    $row = $sqlStatement->fetch(PDO::FETCH_ASSOC);
+    print_r($row);
+    $repeated = $row['repeated'] +1;
+    $percentage = $row['procent'] +$procent;
+    $addRow = "UPDATE `statistic`
+    SET `repeated` = $repeated, `procent` = $percentage
+    WHERE `topic` = '$topic'";
+
+    $addStatement = $dbConnection->query($addRow);
+
+    exit();
+    // TODO INCREMENTATIONS AND ADDITIONS
+}
 
 
 
