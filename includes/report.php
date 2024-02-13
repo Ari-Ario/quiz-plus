@@ -52,21 +52,22 @@ addStatistic($topic, $procent, $dbConnection);
 <?php include "header.php"; ?>
 <section id="form-quiz">
     <section id="form-container">
-    <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints" ; ?></h1>
+        <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints" ; ?></h1>
+        <div >
+            newsletter
+            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            Name:
+            <input type="text" name="name">
+            <br><br>
+            E-mail:
+            <input type="text" name="email">
+            <br><br>
+            <span class="error"> <?php if (!empty($emailErr)) {echo $emailErr;} else {echo "";};?></span>
+            <br><br>
+            <input type="submit" name="submit" value="Submit">
+            </form>
+        </div>
     </section>
-
-    <div >
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-        E-mail:
-        <input type="text" name="name">
-
-        <input type="text" name="email">
-        <span class="error"> <?php if (!empty($emailErr)) {echo $emailErr;} else {echo "";};?></span>
-        <br><br>
-        <input type="submit" name="submit" value="Submit">
-        </form>
-    </div>
-
 </section>
 
 <?php include "footer.php" ?>
