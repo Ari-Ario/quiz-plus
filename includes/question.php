@@ -73,11 +73,11 @@ include "data-collector.php";
                         else $value = 0;
                         echo "<section id='form-check'>\n";
                         if ($multipleChoice) {
-                            echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName' value='$value'>\n";
+                            echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName$i' value='$value'>\n";
                         } else{
-                            echo "<input type='radio' name='single-choice' id='$answerColumnName' value='$value'>\n";
+                            echo "<input type='radio' name='single-choice' id='$answerColumnName$i' value='$value'>\n";
                         }
-                        echo "<label class='form-check-label' for='$answerColumnName'> $answerText</label>\n";
+                        echo "<label class='form-check-label' for='$answerColumnName$i'> $answerText</label>\n";
                         echo "</section>";
                     }
                 }
