@@ -318,6 +318,55 @@ a {
   background-color: var(--bluedarkest);
 }
 
+/* PopUp in Report Page*/
+.popup {
+  display: none;
+  position: relative;
+  top: -50%;
+  left: 38%;
+  width: fit-content;
+  height: fit-content;
+  background-color: var(--bluedarkest);
+  opacity: 80%;
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+  /* grid-template-columns: repeat(3, 1fr);
+  justify-content: center;
+  align-items: center; */
+  z-index: 1;
+}
+
+.popup-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: fit-content;
+  height: fit-content;
+  /* transform: translate(-50%, -50%); */
+  background-color: var(--bluedarker);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px var(--bluedarker);
+  text-align: center;
+}
+.closing {
+  position: absolute;
+  background-color: white;
+  color: darkred;
+  border: 1px solid var(--red);
+  border-radius: 12px;
+  top: 1vh;
+  right: 1vw;
+  font-size: 30px;
+  padding: 0 12px;
+  /* margin-right: 26px; */
+  cursor: pointer;
+}
+
+.modal-body {
+  margin-top: 5vh;
+}
 
 @media screen and (max-width: 768px)  {
 

@@ -24,7 +24,6 @@ else {
 $scriptName = $_SERVER['SCRIPT_NAME'];
 
 if (str_contains($scriptName, 'index')){
-    session_destroy();
     session_unset();
     $quiz = null;
 }

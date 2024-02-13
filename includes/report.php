@@ -53,20 +53,32 @@ addStatistic($topic, $procent, $dbConnection);
 <section id="form-quiz">
     <section id="form-container">
         <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints" ; ?></h1>
-        <div >
-            newsletter
-            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-            Name:
-            <input type="text" name="name">
-            <br><br>
-            E-mail:
-            <input type="text" name="email">
-            <br><br>
+
+        <button class="nav-link" onclick="openPopup()">Newsletter</button>
+            <section id="popup" class="popup" style="margin: 0; padding: 0;">
+                <section class="modal-dialog popup-content" role="document">
+                    
+                        <section class="closing">
+                            <span class="close" onclick="closePopup()">&times;</span>
+                        </section>
+
+                        <section class="modal-body">
+                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                            <section class="form-floating mb-3">
+                                <input name="name" type="text" class="form-control rounded-3" id="name" placeholder="Ari">
+                                <label for="name">Name</label>
+                            </section>
+                            <section class="form-floating mb-3">
+                                <input name="email" type="email" class="form-control rounded-3" id="email" placeholder="ari@ario.com">
+                                <label for="email">Email</label>
+                            </section>
+                            <input id="register" onclick="printOutput()" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="Register">
+                            </form>
+                        </section>
+                </section>
+            </section>
             <span class="error"> <?php if (!empty($emailErr)) {echo $emailErr;} else {echo "";};?></span>
-            <br><br>
-            <input type="submit" name="submit" value="Submit">
-            </form>
-        </div>
+
     </section>
 </section>
 
