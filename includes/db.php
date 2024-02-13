@@ -47,10 +47,113 @@ function takeFromTable($dbConnection){
 }
 
 
+function addStatistic($topic, $procent, $dbConnection){
+    //first: create a table with columns: `statistic`(`topic_id`, `topic`, `repeated`, `procent`)
+
+    $query = "SHOW TABLES LIKE 'statistic'";
+    $sqlStatement = $dbConnection->prepare($query);
+    $sqlStatement->execute();
+    $fetchSth = $sqlStatement->fetchColumn();
+
+    // if the table does not exist
+    if (!$fetchSth) {
+        // create table 
+        $queryCreate = "CREATE TABLE `statistic` (
+            topic_id INT(6) AUTO_INCREMENT,
+            topic VARCHAR(30) NOT NULL,
+            repeated VARCHAR(30) NOT NULL,
+            procent VARCHAR(50) NOT NULL,
+            PRIMARY KEY (topic_id)
+            )";
+        $addStatement = $dbConnection->query($queryCreate);
+
+        $queryInsertNew = "INSERT INTO statistic (`topic`, `repeated`, `procent`) VALUES ('$topic', 1, $procent)";
+        $statmentInsert= $dbConnection->query($queryInsertNew);
+
+    } else { // if the table existes but:
+        $query = "SELECT * FROM statistic WHERE topic = '$topic'";
+        $sqlStatement = $dbConnection->prepare($query);
+        $sqlStatement->execute();
+        $row = $sqlStatement->fetch(PDO::FETCH_ASSOC);
+        // the row with the selected topic does not exist
+        if (!$row){
+            $queryInsertNew = "INSERT INTO statistic (`topic`, `repeated`, `procent`) VALUES ('$topic', 1, $procent)";
+            $dbConnection->query($queryInsertNew);
+        } else { // finally if the table and the row exists, then just update it
+            $query = "SELECT * FROM statistic WHERE topic = '$topic'";
+            $sqlStatement = $dbConnection->query($query);
+            $row = $sqlStatement->fetch(PDO::FETCH_ASSOC);
+
+            $repeated = $row['repeated'] +1;
+            $percentage = $row['procent'] +$procent;
+            $addRow = "UPDATE `statistic`
+            SET `repeated` = $repeated, `procent` = $percentage
+            WHERE `topic` = '$topic'";
+            $addStatement = $dbConnection->query($addRow);
+        }
+    }
+}
+
+// To avoid exploits and JS Injections
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+if ($_POST['email']){
+    newsletter($dbConnection);
+}
 
 
 
+function newsletter($dbConnection){
+    //first: create a table with columns: `newsletter`(`id`, `user_name`, `email`)
+    $name = test_input($_POST["name"]);
+    $email = test_input($_POST["email"]);
 
+    global $emailErr;
+
+    $query = "SHOW TABLES LIKE 'newsletter'";
+    $sqlStatement = $dbConnection->prepare($query);
+    $sqlStatement->execute();
+    $fetchSth = $sqlStatement->fetchColumn();
+
+    // if the table does not exist
+    if (!$fetchSth) {
+        // create table 
+        $queryCreate = "CREATE TABLE `newsletter` (
+            id INT AUTO_INCREMENT,
+            user_name VARCHAR(255) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            PRIMARY KEY (id)
+            )";
+        $dbConnection->query($queryCreate);
+        // inserting the query with the creation of the table simultainously
+        $queryInsertNew = "INSERT INTO newsletter (`user_name`, `email`) VALUES ('$name', '$email')";
+        $dbConnection->query($queryInsertNew);
+        $emailErr = "Your email has been registered successfully!";
+
+    } else { // if the table existes but:
+        $query = "SELECT * FROM newsletter WHERE email = '$email'";
+        $sqlStatement = $dbConnection->prepare($query);
+        $sqlStatement->execute();
+        $row = $sqlStatement->fetch(PDO::FETCH_ASSOC);
+        // the row with the selected topic does not exist
+        if (!$row){
+            $queryInsertNew = "INSERT INTO newsletter (`user_name`, `email`) VALUES ('$name', '$email')";
+            $dbConnection->query($queryInsertNew);
+            
+            $emailErr = "Your email has been registered successfully!";
+
+        } else { // finally if the table and the row exists, then just update it
+
+            $emailErr = "Email already exists!";
+        }
+    }
+}
+
+$emailErr;
 
 //  extra functions to split the table questions into two other tables: question and answer
 // a function to check if a row is recorded once; it takes data from createROW
