@@ -51,6 +51,10 @@ include "data-collector.php";
 
         <div class="main-container">
 
+            <!-- questions -->
+            <section class="header-form">
+                <h1><?php echo $question[0]['question_text'] ?></h1>
+            </section>
 
             <form action="<?php echo $actionUrl; ?>" method="post">
                 <?php
