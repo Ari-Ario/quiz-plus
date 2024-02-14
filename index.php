@@ -54,7 +54,7 @@ include_once "includes/db.php";
                     <h1 class="title">ARAM</h1>
                     <p class="slogan">Erweitere dein <br> Allgemein Wissen <br> mit ARAM</p>
                 </div>
-                <form class="start-quiz" action="/includes/question.php" method="POST">
+                <form class="start-quiz" action="/includes/question.php" method="GET">
                     <div class="in-group">
                         <label for="topic">Select a topic:</label>
                         <select name="topic" id="topic">

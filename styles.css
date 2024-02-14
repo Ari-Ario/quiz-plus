@@ -10,6 +10,7 @@
   --main: rgb(0, 6, 50);
   --second: #b7bded;
   --textColor: rgb(231, 233, 255);
+  --mainDark:rgb(0, 5, 46);
 
 
   /* sizes */
@@ -243,26 +244,71 @@ select {
 
 .questions {
   max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.question-text{
+  font-size: var(--subSubTitle);
 }
 
 #form-check {
   display: flex;
   flex-direction: column;
-  /* width: 25%; */
+  width: 100%;
   align-self: center;
   justify-self: center;
   align-items: center;
 
 }
 
-#form-check input {
-  visibility: hidden;
-}
+  #form-check input {
+    visibility: hidden;
+  }
 
 #form-check label {
-  background-color: #000;
+  /* background-color: #000; */
   padding: 1rem 2rem;
   width: 100%;
+}
+
+
+.form-check-label{
+  background-color: var(--mainDark);
+  font-size: var(--bigText);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 400px;
+}
+
+
+
+.form-check-label:has([type='checkbox']:checked) {
+  background-color: var(--second);
+  color: var(--main);
+}
+.form-check-label:has([type='radio']:checked) {
+  background-color: var(--second);
+  color: var(--main);
+}
+
+
+
+.btn-group{
+  display: flex;
+  justify-content: space-around;
+  margin-top: 2rem;
+}
+
+.btn-group button{
+  font-size: var(--bigText);
+  font-weight: bold;
+  padding: 1rem 2rem;
+  border-radius: 0.3rem;
+  border: none;
+  background-color: var(--second);
 }
 
 /* footer */

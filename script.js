@@ -44,14 +44,16 @@ let labels = document.querySelectorAll("label");
 labels.forEach((e) => e.addEventListener("click", changeColor));
 
 function changeColor() {
-  let color = this.style.backgroundColor;
-  console.log(this.style.backgroundColor);
-  if (this.style.backgroundColor == "black") {
-    this.style.backgroundColor = "red";
-    console.log("changed color");
-  } else if (this.style.backgroundColor == "red") {
-    this.style.backgroundColor = "black";
-  }
+ 
+
+
+ 
+  // if (this.style.backgroundColor == "black") {
+  //   this.style.backgroundColor = "red";
+  //   console.log("changed color");
+  // } else if (this.style.backgroundColor == "red") {
+  //   this.style.backgroundColor = "black";
+  // }
 
   //   this.style.backgroundColor = "red";
 }

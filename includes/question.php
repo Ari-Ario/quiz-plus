@@ -53,10 +53,10 @@ include "data-collector.php";
             <main>
                 <!-- questions -->
                 <section class="header-form">
-                    <h1><?php echo $question[0]['question_text'] ?></h1>
+                    <h1 class="question-text"><?php echo $question[0]['question_text'] ?></h1>
                 </section>
 
-                <form class="questions" action="<?php echo $actionUrl; ?>" method="post">
+                <form class="questions" action="<?php echo $actionUrl; ?>" method="get">
                     <?php
                     $correct = "";
                     foreach ($question as $key => $value) {
@@ -84,12 +84,14 @@ include "data-collector.php";
                             else $value = 0;
                             echo "<section id='form-check'>\n";
                             if ($multipleChoice) {
-                                echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName+$i' value='$value'>\n";
+                                // echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName+$i' value='$value'>\n";
+                                $test = "<input type='checkbox' name='$answerColumnName' id='$answerColumnName+$i' value='$value'>\n";
                             } else {
                                 // changed name from "single-choice" to $answerColumnName
-                                echo "<input type='radio' name='single-choice' id='$answerColumnName+$i' value='$value'>\n";
+                                // echo "<input type='radio' name='single-choice' id='$answerColumnName+$i' value='$value'>\n";
+                                $test = "<input type='radio' name='single-choice' id='$answerColumnName+$i' value='$value'>\n";
                             }
-                            echo "<label style='background-color:black;' class='form-check-label' for='$answerColumnName+$i'> $answerText</label>\n";
+                            echo "<label  class='form-check-label' for='$answerColumnName+$i'> $test $answerText </label>\n";
                             echo "</section>";
                         }
                     }
@@ -103,7 +105,12 @@ include "data-collector.php";
                     <!-- Validation of question -->
 
 
-                    <button type="submit" class="btn btn-primary">Next</button>
+                    <div class="btn-group">
+                        <button type="button" onclick="window.history.go(-1)">Back</button>
+                        <button type="submit" class="btn btn-primary">Next</button>
+
+                    </div>
+
 
 
                 </form>
