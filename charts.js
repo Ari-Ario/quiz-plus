@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
-const margin = { top: 20, right: 30, bottom: 40, left: 90 },
+const margin = { top: 20, right: 30, bottom: 40, left: 20 },
   width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  height = 200 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3
@@ -15,7 +15,7 @@ const svg = d3
 // Parse the Data
 d3.csv("beliebte-themen.csv").then(function (data) {
   // Add X axis
-  const x = d3.scaleLinear().domain([0, 13000]).range([0, width]);
+  const x = d3.scaleLinear().domain([0, 120]).range([0, width]);
   svg
     .append("g")
     .attr("transform", `translate(0, ${height})`)
@@ -30,8 +30,14 @@ d3.csv("beliebte-themen.csv").then(function (data) {
     .range([0, height])
     .domain(data.map((d) => d.Topic))
     .padding(0.1);
-  svg.append("g").call(d3.axisLeft(y));
+  svg
+    .append("g")
+    .call(d3.axisLeft(y))
+    .selectAll("text")
+    .style("fill", "white")
 
+    .attr("transform", "translate(-10,30)rotate(90)");
+  // .attr("transform", "translate(-10,0)rotate(0)");
   //Bars
   svg
     .selectAll("myRect")
@@ -41,90 +47,6 @@ d3.csv("beliebte-themen.csv").then(function (data) {
     .attr("y", (d) => y(d.Topic))
     .attr("width", (d) => x(d.Anzahl))
     .attr("height", y.bandwidth())
-    .attr("fill", "#b7bded");
+    .attr("fill", "#b7bded")
+    .attr("class", "graph-hover");
 });
-
-function drawGraph() {
-  var margin = { top: 20, right: 20, bottom: 100, left: 60 },
-    width = 600 - margin.left - margin.right,
-    height = 400 - margin.top - margin.bottom,
-    x = d3.scale.ordinal().rangeRoundBands([0, width], 0.5),
-    y = d3.scale.linear().range([height, 0]);
-
-  //draw axis
-  var xAxis = d3.svg.axis().scale(x).orient("bottom");
-  var yAxis = d3.svg
-    .axis()
-    .scale(y)
-    .orient("left")
-    .ticks(5)
-    .innerTickSize(-width)
-    .outerTickSize(0)
-    .tickPadding(10);
-
-  var svg = d3
-    .select("#testGraph")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-  d3.csv("beliebte-themen.csv", function (data) {
-    x.domain(
-      data.map(function (d) {
-        return d.topic;
-      })
-    );
-
-    y.domain([
-      0,
-      d3.max(data, function (d) {
-        return d.anzahl;
-      }),
-    ]);
-
-    svg
-      .append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0, " + height + ")")
-      .call(xAxis)
-      .selectAll("text")
-      .style("text-anchor", "middle")
-      .attr("dx", "-0.5em")
-      .attr("dy", "-.55em")
-      .attr("y", 30)
-      .attr("transform", "rotate(0)");
-
-    svg
-      .append("g")
-      .attr("class", "y axis")
-      .call(yAxis)
-      .append("text")
-      .attr("transform", "rotate(-90)")
-      .attr("y", 5)
-      .attr("dy", "0.8em")
-      .attr("text-anchor", "end")
-      .text("Word Count");
-
-    svg
-      .selectAll("bar")
-      .data(data)
-      .enter()
-      .append("rect")
-      .style("fill", "orange")
-      .attr("x", function (d) {
-        return x(d.topic);
-      })
-      .attr("width", x.rangeBand())
-      .attr("y", function (d) {
-        return y(d.anzahl);
-      })
-      .attr("height", function (d) {
-        return height - y(d.anzahl);
-      });
-  });
-  console.log("testGraph");
-}
-
-drawGraph();

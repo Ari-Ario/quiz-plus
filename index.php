@@ -84,7 +84,7 @@ include_once "includes/db.php";
                     <input type="submit" value="tables">
                 </form>
                 <div class="beliebte-themen">
-                    <p class="slogan">Beliebte Themen </p>
+                    <p class="graph-slogan">Beliebte Themen </p>
                     <div id="beliebte-themen-chart">
 
                     </div>
@@ -99,7 +99,7 @@ include_once "includes/db.php";
 
 
 
-        <?php include './includes/footer.php'; ?>
+        <?php include './includes/footer.php' ?>
 
         <script src="script.js"></script>
         <script src="navbar.js"></script>
