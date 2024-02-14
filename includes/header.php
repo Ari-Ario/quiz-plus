@@ -11,15 +11,15 @@
             <span></span><span></span><span></span>
         </ul>
         <ul class="navbar-right">
-            <li><a href="">Home</a></li>
-            <li><a href="">Topics</a></li>
-            <li><a href="">Kontakt</a></li>
+            <li><a href="../index.php">Home</a></li>
+            <li><a href="../index.php">Topics</a></li>
+            <li><a href="../index.php">Kontakt</a></li>
         </ul>
     </nav>
 
     <ul class="navbar-hamburger" id="navbar-hamburger" style="display: none">
-        <li><a href="">Home</a></li>
-        <li><a href="">Topics</a></li>
-        <li><a href="">Kontakt</a></li>
+        <li><a href="../index.php">Home</a></li>
+        <li><a href="../index.php">Topics</a></li>
+        <li><a href="../index.php">Kontakt</a></li>
     </ul>
 </header>

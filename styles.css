@@ -1,23 +1,23 @@
 /*  Tables zum debuggen */
-.debug-form{
+.debug-form {
   display: none;
 }
 
 
 
 :root {
-/* colors */
+  /* colors */
   --main: rgb(0, 6, 50);
   --second: #b7bded;
   --textColor: rgb(231, 233, 255);
- 
+
 
   /* sizes */
 
-  --title:10rem;
-  --subTitle:5rem;
-  --subSubTitle:3rem;
-  --bigText:2rem;
+  --title: 10rem;
+  --subTitle: 5rem;
+  --subSubTitle: 3rem;
+  --bigText: 2rem;
 }
 
 * {
@@ -43,8 +43,8 @@ body {
 
 
   grid-template-areas: "header"
-      "main"
-      "footer";
+    "main"
+    "footer";
 
   margin: auto;
 }
@@ -66,7 +66,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-color: var(--textColor);
+  color: var(--textColor);
 
 }
 
@@ -177,7 +177,7 @@ nav a:hover::after {
   margin-top: 5rem;
 }
 
-main{
+main {
   display: flex;
   flex-direction: column;
   gap: 5rem;
@@ -185,28 +185,28 @@ main{
   align-items: center;
 }
 
-h1{
+.title {
   font-size: 10rem;
   font-weight: 900;
   margin: 0;
 }
 
-.slogan{
+.slogan {
   font-size: 5rem;
   font-weight: 500;
   margin-bottom: 0px;
 }
 
-form{
+form {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 1rem ;
+  gap: 1rem;
 
 }
 
 
-.in-group{
+.in-group {
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -214,21 +214,22 @@ form{
 }
 
 
-.in-group label{
-font-size: 2rem;
+.in-group label {
+  font-size: 2rem;
 }
 
-.in-group input,select{
+.in-group input,
+select {
   font-size: 2rem;
   font-weight: 700;
   color: var(--main);
   height: 3rem;
   padding: 0;
-	background: none;
-	border: none;
-	border-radius: 0.5rem;
-	outline: none;
-	/* -webkit-appearance: none;
+  background: none;
+  border: none;
+  border-radius: 0.5rem;
+  outline: none;
+  /* -webkit-appearance: none;
 	-moz-appearance: none;
 	appearance: none; */
   background-color: var(--second);
@@ -243,39 +244,88 @@ font-size: 2rem;
 
 
 
+/* Report.php */
 
+/* Modal */
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 
 
 @media screen and (max-width: 600px) {
   .navbar-right {
-      display: none;
+    display: none;
   }
 
 
   .navbar-left {
-      display: flex;
-      gap: 0rem;
-      padding-left: 0;
-      list-style: none;
+    display: flex;
+    gap: 0rem;
+    padding-left: 0;
+    list-style: none;
 
   }
 
   .navbar-left a {
-      font-size: 2rem;
+    font-size: 2rem;
   }
 
 
 
- 
+
 
   .hamburger-icon {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-      width: 3rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 3rem;
 
 
 
@@ -283,16 +333,16 @@ font-size: 2rem;
   }
 
   .hamburger-icon span {
-      width: 100%;
-      height: 0.4rem;
-      background-color: var(--second);
+    width: 100%;
+    height: 0.4rem;
+    background-color: var(--second);
 
   }
 
   .hamburger-icon:hover {
-      transform: scale(1.1);
-      transform-origin: 100% 100%;
-      cursor: pointer;
+    transform: scale(1.1);
+    transform-origin: 100% 100%;
+    cursor: pointer;
 
   }
 
@@ -302,8 +352,8 @@ font-size: 2rem;
 /* dont show hamburger menu items incase you increase window width after clicking the hamburger symbol */
 @media screen and (min-width: 600px) {
   .navbar-hamburger {
-      display: none;
-      z-index: -1;
+    display: none;
+    z-index: -1;
   }
 }
 
@@ -311,18 +361,16 @@ font-size: 2rem;
 
 @keyframes dropdown {
   from {
-      bottom: 200px;
+    bottom: 200px;
 
-      opacity: 0;
+    opacity: 0;
 
 
   }
 
   to {
-      bottom: 0px;
-      opacity: 1;
+    bottom: 0px;
+    opacity: 1;
 
   }
 }
-
-
