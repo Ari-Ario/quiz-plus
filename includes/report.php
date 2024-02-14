@@ -79,7 +79,7 @@ addStatistic($topic, $procent, $dbConnection);
             <div class="modal-content">
 
                 <span class="close">&times;</span>
-                <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                <form class="start-quiz" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
                     <label style="color: black;" for="name">name</label>
                     <input type="text" name="name" id="name">
                     <label style="color: black;" for="name">e-mail</label>
