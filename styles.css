@@ -197,7 +197,7 @@ main {
   margin-bottom: 0px;
 }
 
-form {
+.start-quiz {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -233,6 +233,36 @@ select {
 	-moz-appearance: none;
 	appearance: none; */
   background-color: var(--second);
+}
+
+
+
+/* questions form */
+
+
+
+.questions {
+  max-width: 900px;
+}
+
+#form-check {
+  display: flex;
+  flex-direction: column;
+  /* width: 25%; */
+  align-self: center;
+  justify-self: center;
+  align-items: center;
+
+}
+
+#form-check input {
+  visibility: hidden;
+}
+
+#form-check label {
+  background-color: #000;
+  padding: 1rem 2rem;
+  width: 100%;
 }
 
 /* footer */

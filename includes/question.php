@@ -50,64 +50,66 @@ include "data-collector.php";
         <?php include "header.php"; ?>
 
         <div class="main-container">
+            <main>
+                <!-- questions -->
+                <section class="header-form">
+                    <h1><?php echo $question[0]['question_text'] ?></h1>
+                </section>
 
-            <!-- questions -->
-            <section class="header-form">
-                <h1><?php echo $question[0]['question_text'] ?></h1>
-            </section>
-
-            <form action="<?php echo $actionUrl; ?>" method="post">
-                <?php
-                $correct = "";
-                foreach ($question as $key => $value) {
-                    if ($value['is_correct'] === "1") {
-                        $correct .= ($key + 1) . ",";
-                    }
-                }
-                // show the answers and compare them with the correct answers
-                // prettyPrint($question);
-                // $correct = $question['correct'];
-                $pattern = "/\s*,\s*/";
-                $correctItems = preg_split($pattern, $correct);
-                array_pop($correctItems);
-
-                // a flag for multiple-choice / Checkbox and/or single-choice / radio
-                if (count($correctItems) > 1) $multipleChoice = true;
-                else $multipleChoice = false;
-                for ($i = 1; $i <= 5; $i++) {
-                    $j = $i - 1;
-                    $answerColumnName = "answer";
-                    if (isset($question[$j][$answerColumnName]) && !empty($question[$j][$answerColumnName])) {
-                        $answerText = $question[$j][$answerColumnName];
-
-                        if (in_array($i, $correctItems)) $value = 1;
-                        else $value = 0;
-                        echo "<section id='form-check'>\n";
-                        if ($multipleChoice) {
-                            echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName+$i' value='$value'>\n";
-                        } else {
-                            // changed name from "single-choice" to $answerColumnName
-                            echo "<input type='radio' name='single-choice' id='$answerColumnName+$i' value='$value'>\n";
+                <form class="questions" action="<?php echo $actionUrl; ?>" method="post">
+                    <?php
+                    $correct = "";
+                    foreach ($question as $key => $value) {
+                        if ($value['is_correct'] === "1") {
+                            $correct .= ($key + 1) . ",";
                         }
-                        echo "<label class='form-check-label' for='$answerColumnName+$i'> $answerText</label>\n";
-                        echo "</section>";
                     }
-                }
-                ?>
-                <input type="hidden" name="questionNum" value="<?php echo $quiz["questionNum"]; ?>">
-                <input type="hidden" name="lastQuestionIndex" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
-                <input type="hidden" name="multipleChoice" name="multipleChoice" value="<?php echo $multipleChoice ? 'true' : 'false'; ?>">
-                <input type="hidden" id="maxPoints" name="maxPoints" value="">
-                <input type="hidden" name="indexStep" name="indexStep" value="1">
+                    // show the answers and compare them with the correct answers
+                    // prettyPrint($question);
+                    // $correct = $question['correct'];
+                    $pattern = "/\s*,\s*/";
+                    $correctItems = preg_split($pattern, $correct);
+                    array_pop($correctItems);
 
-                <!-- Validation of question -->
+                    // a flag for multiple-choice / Checkbox and/or single-choice / radio
+                    if (count($correctItems) > 1) $multipleChoice = true;
+                    else $multipleChoice = false;
+                    for ($i = 1; $i <= 5; $i++) {
+                        $j = $i - 1;
+                        $answerColumnName = "answer";
+                        if (isset($question[$j][$answerColumnName]) && !empty($question[$j][$answerColumnName])) {
+                            $answerText = $question[$j][$answerColumnName];
+
+                            if (in_array($i, $correctItems)) $value = 1;
+                            else $value = 0;
+                            echo "<section id='form-check'>\n";
+                            if ($multipleChoice) {
+                                echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName+$i' value='$value'>\n";
+                            } else {
+                                // changed name from "single-choice" to $answerColumnName
+                                echo "<input type='radio' name='single-choice' id='$answerColumnName+$i' value='$value'>\n";
+                            }
+                            echo "<label class='form-check-label' for='$answerColumnName+$i'> $answerText</label>\n";
+                            echo "</section>";
+                        }
+                    }
+                    ?>
+                    <input type="hidden" name="questionNum" value="<?php echo $quiz["questionNum"]; ?>">
+                    <input type="hidden" name="lastQuestionIndex" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
+                    <input type="hidden" name="multipleChoice" name="multipleChoice" value="<?php echo $multipleChoice ? 'true' : 'false'; ?>">
+                    <input type="hidden" id="maxPoints" name="maxPoints" value="">
+                    <input type="hidden" name="indexStep" name="indexStep" value="1">
+
+                    <!-- Validation of question -->
 
 
-                <button type="submit" class="btn btn-primary">Next</button>
+                    <button type="submit" class="btn btn-primary">Next</button>
 
 
-            </form>
+                </form>
         </div>
+        </main>
+
 
 
 
