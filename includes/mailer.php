@@ -85,16 +85,20 @@ function sendEmail($name, $email, $message){
     $mail->addReplyTo("$email", 'Information');
 
 
-    //Read an HTML message body from an external file, convert referenced images to embedded,
-    //convert HTML into a basic plain-text alternative body
-    //$mail->msgHTML(file_get_contents('contents.html'), __DIR__);
-    $mail->isHTML(false);
+    // Fetch the content of the webpage
+    $url = 'https://www.php.net/manual/en/function.getenv.php'; // Replace with the URL of your webpage
+    $content = file_get_contents($url);
+
+    // Set the HTML content of the email to the webpage content
+    $mail->isHTML(true);
+    // $mail->Body = $content;
+
     //Set the subject line
     $mail->Subject = 'Newsletter From ARAM';
     $mail->Body = "
         Email: $email
         Dear $name 
-        Message: $message
+        Message: Here is our NEWALETTER $content
     ";
 
     //Replace the plain text body with one created manually
