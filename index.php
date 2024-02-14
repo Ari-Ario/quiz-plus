@@ -44,8 +44,8 @@ session_destroy();
                 <input type="hidden" name="IndexStep" id="IndexStep" value="1">
                 <input type="submit" id="start-btn" value="Start Quiz">
             </form>
-            <form action="/includes/test.php" method="POST">
-                <input type="submit" value="tables">
+            <form action="/includes/mailer.php" method="POST">
+                <input type="submit" value="mailer">
             </form>
         </section>
     </section>

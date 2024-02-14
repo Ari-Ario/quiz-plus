@@ -4,7 +4,8 @@ if (session_status() === PHP_SESSION_NONE){
 }
 include dirname(__DIR__) . "/utils/helper.php";
 include "db.php";
-// prettyPrint($_SESSION);
+
+// print_r($_SESSION);
 // exit();
 $totalPoints = 0;
 foreach ($_SESSION as $key => $data) {
@@ -73,6 +74,7 @@ addStatistic($topic, $procent, $dbConnection);
                                 <label for="email">Email</label>
                             </section>
                             <input id="register" onclick="printOutput()" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="Register">
+
                             </form>
                         </section>
                 </section>

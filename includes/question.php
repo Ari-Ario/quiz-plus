@@ -58,6 +58,7 @@ include "data-collector.php";
                 // $correct = $question['correct'];
                 $pattern = "/\s*,\s*/";
                 $correctItems = preg_split($pattern, $correct);
+                $maxPoints = count($correctItems);
                 array_pop($correctItems);
 
                 // a flag for multiple-choice / Checkbox and/or single-choice / radio
@@ -85,13 +86,13 @@ include "data-collector.php";
                     <input type="hidden" name="questionNum" value="<?php echo $quiz["questionNum"];?>">
                     <input type="hidden" name="lastQuestionIndex" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex;?>">
                     <input type="hidden" name="multipleChoice" name="multipleChoice" value="<?php echo $multipleChoice ? 'true' : 'false'; ?>">
-                    <input type="hidden" id="maxPoints" name="maxPoints" value="">
+                    <input type="hidden" id="maxPoints" name="maxPoints" value="<?php $maxPoints; ?>">
                     <input type="hidden" name="indexStep" name="indexStep" value="1">
 
                 <!-- Validation of question -->
                     <p id="validation-warning" class="warning"></p>
 
-                    <button type="submit" class="btn btn-primary" style="">Next</button>
+                    <button type="submit" class="btn btn-primary">Next</button>
                     <p class="spacer"></p>
 
             </form>

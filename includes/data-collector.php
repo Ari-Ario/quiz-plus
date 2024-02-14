@@ -51,16 +51,17 @@ else if (str_contains($scriptName, 'question')){
     }
     // repeat the form, in case of finished number of questions redirect it to report 
     $currentQuestionIndex= $lastQuestionIndex+1;
-    if ( $currentQuestionIndex >= $quiz['questionNum']-1){
-        $actionUrl = "report.php";
-
+    if ( $currentQuestionIndex < $quiz['questionNum']-1){
+        $actionUrl = "question.php";
+        
     }
     else {
-        $actionUrl = "question.php";
+
+        $actionUrl = "report.php";
 
     }
 }
 else if (str_contains($scriptName, 'reoprt')){
-    // $currentQuestionIndex = -1;
+    $currentQuestionIndex = -1;
 }
 
