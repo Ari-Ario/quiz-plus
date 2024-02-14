@@ -85,9 +85,11 @@ function sendEmail($name, $email, $message){
     $mail->addReplyTo("$email", 'Information');
 
 
-    // Fetch the content of the webpage
+    // Fetch the content of the webpage ; first possibility
     $url = 'https://www.php.net/manual/en/function.getenv.php'; // Replace with the URL of your webpage
     $content = file_get_contents($url);
+
+    $chartImage = 'path/to/chart.png'; // Path to the generated image; second and important possibility for our charts
 
     // Set the HTML content of the email to the webpage content
     $mail->isHTML(true);
@@ -98,21 +100,17 @@ function sendEmail($name, $email, $message){
     $mail->Body = "
         Email: $email
         Dear $name 
-        Message: Here is our NEWALETTER $content
-    ";
-
-    //Replace the plain text body with one created manually
-    //$mail->AltBody = 'This is a plain-text message body';
+        Message: Here is our NEWALETTER $content" . '<html><body><h1>Webpage with Visualization</h1><img src="' . $chartImage . '" alt="Chart"></body></html>';
 
     //Attach an image file
     //$mail->addAttachment('images/phpmailer_mini.png');
 
     //send the message, check for errors
     if ($mail->send()) {
-        $response = "Submited. Thanks! I will be in contact with you shortly.";
+        $response = "Message sent to $email";
     } else {
         // Handle the case where the script is accessed directly without a POST request
-        $response = "Error: Oops! Something went wrong while sending email.";
+        $response = "Error: Oops! Something went wrong while sending email: $email";
         //Section 2: IMAP
         //Uncomment these to save your message in the 'Sent Mail' folder.
         #if (save_mail($mail)) {
