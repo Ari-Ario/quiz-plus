@@ -200,6 +200,8 @@ main {
   font-size: 5rem;
   font-weight: 500;
   margin-bottom: 0px;
+  line-height: 1;
+  margin-top: 0;
 }
 
 .graph-slogan {
@@ -211,7 +213,7 @@ main {
 .start-quiz {
   display: flex;
   flex-direction: column;
-  max-width: 500px;
+  max-width: 400px;
   gap: 1rem;
   width: 100%;
 
@@ -266,6 +268,7 @@ select {
 
 .question-text {
   font-size: var(--subSubTitle);
+  text-align: center;
 }
 
 #form-check {
