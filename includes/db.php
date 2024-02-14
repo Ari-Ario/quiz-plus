@@ -104,7 +104,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-if ($_POST['email']) {
+if (isset($_POST['email'])) {
     newsletter($dbConnection);
 }
 
