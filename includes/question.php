@@ -89,7 +89,7 @@ include "data-collector.php";
                                 // changed name from "single-choice" to $answerColumnName
                                 echo "<input type='radio' name='single-choice' id='$answerColumnName+$i' value='$value'>\n";
                             }
-                            echo "<label class='form-check-label' for='$answerColumnName+$i'> $answerText</label>\n";
+                            echo "<label style='background-color:black;' class='form-check-label' for='$answerColumnName+$i'> $answerText</label>\n";
                             echo "</section>";
                         }
                     }
@@ -117,6 +117,8 @@ include "data-collector.php";
         <?php include "footer.php" ?>
 
     </div>
+
+    <script src="../script.js"></script>
 </body>
 
 </html>
