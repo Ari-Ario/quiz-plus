@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE){
     session_start();
 }
 include dirname(__DIR__) . "/utils/helper.php";
-include "db.php";
+include "data-collector.php";
 
 // print_r($_SESSION);
 // exit();

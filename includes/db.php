@@ -155,6 +155,16 @@ function newsletter($dbConnection){
 
 $emailErr;
 
+
+function callEmails($dbConnection) {
+    $querySelect = "SELECT * FROM `newsletter`";
+    // all data with 
+    $sqlStatement = $dbConnection->query($querySelect);
+    $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
+    return $rows;
+}
+
+
 //  extra functions to split the table questions into two other tables: question and answer
 // a function to check if a row is recorded once; it takes data from createROW
 function recordOnce($answer, $dbConnection){
