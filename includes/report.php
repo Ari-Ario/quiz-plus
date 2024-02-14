@@ -5,8 +5,6 @@ if (session_status() === PHP_SESSION_NONE){
 include dirname(__DIR__) . "/utils/helper.php";
 include "data-collector.php";
 
-// print_r($_SESSION);
-// exit();
 $totalPoints = 0;
 foreach ($_SESSION as $key => $data) {
     if (isset($data['single-choice']) && $data['single-choice'] === "1") {
@@ -29,7 +27,7 @@ foreach ($_SESSION as $key => $data) {
 }
 
 
-$procent = round(($totalPoints/(count($_SESSION)))*100, 2);
+$procent = round(($totalPoints/(count($_SESSION)-1))*100, 2);
 if ($procent > 100) { $procent = 100; }
 else if  ($procent < 0) { $procent= $totalPoints = 0; }
 // TODO: DATABASE FOR MOST DIFFICULT QUESTIONS AND MOST DIFFICULT TOPICS + JS PIE VISUALIZATION
@@ -37,7 +35,10 @@ else if  ($procent < 0) { $procent= $totalPoints = 0; }
 // add data in new table for visualization
 $topic = $_SESSION['quiz']['topic'];
 addStatistic($topic, $procent, $dbConnection);
+$totalStatisticSubject= takeStatisticSubject($topic, $dbConnection);
 
+$repeatedQuiz = $totalStatisticSubject[0]['repeated'];
+$totalProcentQuiz = $totalStatisticSubject[0]['procent'];
 ?>
 
 <!DOCTYPE html>
@@ -48,16 +49,15 @@ addStatistic($topic, $procent, $dbConnection);
     <title>report</title>
     <link rel="stylesheet" href="../styles.css">
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <script type="text/javascript">
 
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
       function drawChart() {
-/*         const div = document.getElementById("dom-target");
-        const myData = parseFloat(div.textContent); */
-
-        const procent = <?php echo $procent ?>;
+        const procent = <?php echo $totalProcentQuiz/ $repeatedQuiz ?>;
+        const users = <?php echo $repeatedQuiz ?> ;
         var data = google.visualization.arrayToDataTable([
           ['Answer', 'procent'],
           ['Correct',     procent],
@@ -65,56 +65,113 @@ addStatistic($topic, $procent, $dbConnection);
         ]);
 
         var options = {
-          title: 'Quiz Result',
-          backgroundColor: "#eeeeee"
+          title: 'Total accuracy done by ' + users + ' users' ,
+          backgroundColor: 'transparent',
+          colors: ['#6b806f', '#cc3232']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart.draw(data, options);
       }
+
+        // second chart of all users answer in the same topic
+        // const xValuesall = ['Correct', 'False'];
+        // const totalprocent = <?php echo $totalProcentQuiz/ $repeatedQuiz ?>;
+        // const yValuesall = [totalprocent, 100-totalprocent];
+        // const barColors = [
+        // "#6b806f",
+        // "#cc3232"
+        // ];
+
+        // new Chart("piechart", {
+        // type: "pie",
+        // data: {
+        //     labels: xValuesall,
+        //     datasets: [{
+        //     backgroundColor: barColors,
+        //     data: yValuesall
+        //     }]
+        // },
+        // options: {
+        //     title: {
+        //     display: true,
+        //     text: 'Total accuracy done by ' + procent + 'users'
+        //     }
+        // }
+        // });
     </script>
 </head>
 <body>
 <?php include "header.php"; ?>
 <section id="form-quiz">
     <section id="form-container">
-        <div id="piechart" class="report"></div>
-        
-<!--         <div id="dom-target" style="display: none;">
-            <?php echo $procent; ?>
-        </div> -->
+
+        <section id="charts">
+            <canvas id="myChart" class="piechart" style="  max-width:70%;"></canvas>
+            <div id="piechart" class="piechart" style="  max-width:30%;"></div>
+        </section>
 
         <button class="nav-link" onclick="openPopup()">Newsletter</button>
-            <section id="popup" class="popup" style="margin: 0; padding: 0;">
-                <section class="modal-dialog popup-content" role="document">
-                    
-                        <section class="closing">
-                            <span class="close" onclick="closePopup()">&times;</span>
-                        </section>
 
-                        <section class="modal-body">
-                            <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                            <section class="form-floating mb-3">
-                                <input name="name" type="text" class="form-control rounded-3" id="name" placeholder="Ari">
-                                <label for="name">Name</label>
-                            </section>
-                            <section class="form-floating mb-3">
-                                <input name="email" type="email" class="form-control rounded-3" id="email" placeholder="ari@ario.com">
-                                <label for="email">Email</label>
-                            </section>
-                            <input id="register" onclick="printOutput()" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="Register">
+        <section id="popup" class="popup" style="margin: 0; padding: 0;">
+            <section class="modal-dialog popup-content" role="document">
+                
+                    <section class="closing">
+                        <span class="close" onclick="closePopup()">&times;</span>
+                    </section>
 
-                            </form>
+                    <section class="modal-body">
+                        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+                        <section class="form-floating mb-3">
+                            <input name="name" type="text" class="form-control rounded-3" id="name" placeholder="Ari">
+                            <label for="name">Name</label>
                         </section>
-                </section>
+                        <section class="form-floating mb-3">
+                            <input name="email" type="email" class="form-control rounded-3" id="email" placeholder="ari@ario.com">
+                            <label for="email">Email</label>
+                        </section>
+                        <input id="register" onclick="printOutput()" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="Register">
+
+                        </form>
+                    </section>
             </section>
-            <span class="error"> <?php if (!empty($emailErr)) {echo $emailErr;} else {echo "";};?></span>
+        </section>
+        <span class="error"> <?php if (!empty($emailErr)) {echo $emailErr;} else {echo "";};?></span>
 
     </section>
 </section>
 
 <?php include "footer.php" ?>
 <script src="../script.js"></script>
+<script type="text/javascript">
+
+    // first chart of the user
+        const xValues = ['Correct', 'False'];
+        const procent = <?php echo $procent; ?>;
+        const yValues = [procent, 100-procent];
+        const barColors = [
+        "#6b806f",
+        "#cc3232"
+        ];
+
+        new Chart("myChart", {
+        type: "pie",
+        data: {
+            labels: xValues,
+            datasets: [{
+            backgroundColor: barColors,
+            data: yValues
+            }]
+        },
+        options: {
+            title: {
+            display: true,
+            text: "Quiz result"
+            }
+        }
+        });
+
+</script>
 </body>
 </html>

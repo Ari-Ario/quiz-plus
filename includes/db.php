@@ -101,7 +101,7 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-if ($_POST['email']){
+if (isset($_POST['email'])){
     newsletter($dbConnection);
 }
 
@@ -164,6 +164,15 @@ function callEmails($dbConnection) {
     return $rows;
 }
 
+function takeStatisticSubject($topic, $dbConnection){
+
+        $query = "SELECT * FROM `statistic`
+        WHERE `topic` = '$topic'";
+        $sqlStatement = $dbConnection->prepare($query);
+        $sqlStatement->execute();
+        $fetchColumn = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
+        return $fetchColumn;
+}
 
 //  extra functions to split the table questions into two other tables: question and answer
 // a function to check if a row is recorded once; it takes data from createROW

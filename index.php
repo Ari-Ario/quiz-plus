@@ -13,6 +13,9 @@ session_destroy();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QUIZ</title>
     <link rel="stylesheet" href="styles.css">
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+    </script>
 </head>
 <body>
     <?php include './includes/header.php';?>
@@ -21,8 +24,9 @@ session_destroy();
 
         <section id="man-bubble">
             <section class="head-bubble">
-                <section class="thought-bubble">
-                    <section class="text">QUIZ?!</section>
+                <div class="thought-bubble">
+                    <div class="text">QUIZ?!</div>
+                </div>
             </section>
 
         <section id="form-main-page">
@@ -47,6 +51,7 @@ session_destroy();
             <form action="/includes/mailer.php" method="POST">
                 <input type="submit" value="mailer">
             </form>
+            <canvas id="selectionChart" style="max-width:70%;"></canvas>
         </section>
     </section>
 </main>
@@ -54,5 +59,28 @@ session_destroy();
     <?php include './includes/footer.php';?>
     
     <script src="script.js"></script>
+    <script>
+    const xValues = ["cinema", "Animals", "geography", "astronomy", "etc"];
+    const yValues = [55, 49, 44, 24, 15];
+    const barColors = ["red", "green","blue","orange","brown"];
+
+    new Chart("selectionChart", {
+    type: "bar",
+    data: {
+        labels: xValues,
+        datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+        }]
+    },
+    options: {
+        legend: {display: false},
+        title: {
+        display: true,
+        text: "Most selected Topics"
+        }
+    }
+    });
+    </script>
 </body>
 </html>
