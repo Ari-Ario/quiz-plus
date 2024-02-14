@@ -1,22 +1,25 @@
-<section id="header-homepage" class="header">
-    <!-- <section id="main-components"> -->
-        <!-- logo here -->
-    <section id="header-logo">
-        QUIZY
-    </section>
-
-    <!-- search container -->
-    <section  id="search-container">  
-        <form id="search-components" action="" method="get">
-            <input class="search" id="search-field" type="text" name="search" placeholder="Search">
-            <input class="search" id="search-btn" type="button" name="search" value="Go">
-        </form>
-    </section>
-    
-    <!-- navigator section -->
-    <section id="cv-navigation">
-        <a href="#" id="cv-link">Start</a>
-    </section>
+<header class="header-container">
+    <nav class="navbar">
+        <ul class="navbar-left">
 
 
-</section>
+            <li style="display: flex; align-items: center">
+                <a href="">ARAM</a>
+            </li>
+        </ul>
+        <ul class="hamburger-icon" id="hamburger-icon" style="display: flex">
+            <span></span><span></span><span></span>
+        </ul>
+        <ul class="navbar-right">
+            <li><a href="">Home</a></li>
+            <li><a href="">Topics</a></li>
+            <li><a href="">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <ul class="navbar-hamburger" id="navbar-hamburger" style="display: none">
+        <li><a href="">Home</a></li>
+        <li><a href="">Topics</a></li>
+        <li><a href="">Kontakt</a></li>
+    </ul>
+</header>
