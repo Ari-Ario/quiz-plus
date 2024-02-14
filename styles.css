@@ -39,7 +39,7 @@ body {
   background-color: var(--main);
 
   padding: 0 2rem;
-  color: var(--textColor);
+  color: var(--second);
 }
 
 .container {
@@ -71,7 +71,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: var(--textColor);
+  color: var(--second);
 
 }
 
@@ -91,7 +91,7 @@ nav a {
   text-decoration: none;
   font-size: 2rem;
 
-  color: var(--textColor);
+  color: var(--second);
   position: relative;
 }
 
@@ -141,12 +141,12 @@ nav a:hover::after {
   text-decoration: none;
   font-size: 1.6rem;
 
-  color: var(--textColor);
+  color: var(--second);
 
 }
 
 .navbar-hamburger li {
-  border-bottom: 2px solid var(--textColor);
+  border-bottom: 2px solid var(--second);
 }
 
 
@@ -194,6 +194,7 @@ main {
   font-size: 10rem;
   font-weight: 900;
   margin: 0;
+  color: var(--second);
 }
 
 .slogan {
@@ -374,6 +375,7 @@ select {
   margin: auto;
   padding: 20px;
   border: 1px solid #888;
+  max-width: 400px;
   width: 80%;
 }
 

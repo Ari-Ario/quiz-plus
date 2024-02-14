@@ -60,47 +60,55 @@ addStatistic($topic, $procent, $dbConnection);
 </head>
 
 <body>
-    <?php include "header.php"; ?>
+    <div class="container">
+        <?php include "header.php"; ?>
+        <div class="main-container">
+            <main>
+
+                <section id="form-quiz">
+                    <section id="form-container">
+                        <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints"; ?></h1>
+                    </section>
+
+                    <button onclick="update(data1)">Data 1</button>
+                    <button onclick="update(data2)">Data 2</button>
+                    <div id="my_dataviz"></div>
 
 
-    <section id="form-quiz">
-        <section id="form-container">
-            <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints"; ?></h1>
-        </section>
+                    <h2>Zeitschrift Abbonieren</h2>
+                    <button id="myBtn">Abbonieren</button>
+                    <div id="myModal" class="modal">
+                        <div class="modal-content">
 
-        <button onclick="update(data1)">Data 1</button>
-        <button onclick="update(data2)">Data 2</button>
-        <div id="my_dataviz"></div>
+                            <span class="close">&times;</span>
+                            <form class="start-quiz" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+                                <label style="color: black;" for="name">name</label>
+                                <input type="text" name="name" id="name">
+                                <label style="color: black;" for="name">e-mail</label>
+                                <input type="email" name="email">
+                                <span class="error"> <?php if (!empty($emailErr)) {
+                                                            echo $emailErr;
+                                                        } else {
+                                                            echo "";
+                                                        }; ?></span>
+                                <br><br>
+                                <input type="submit" name="submit" value="Abbonieren">
+                            </form>
+                        </div>
 
+                    </div>
 
-        <h2>Zeitschrift Abbonieren</h2>
-        <button id="myBtn">Abbonieren</button>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-
-                <span class="close">&times;</span>
-                <form class="start-quiz" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-                    <label style="color: black;" for="name">name</label>
-                    <input type="text" name="name" id="name">
-                    <label style="color: black;" for="name">e-mail</label>
-                    <input type="email" name="email">
-                    <span class="error"> <?php if (!empty($emailErr)) {
-                                                echo $emailErr;
-                                            } else {
-                                                echo "";
-                                            }; ?></span>
-                    <br><br>
-                    <input type="submit" name="submit" value="Abbonieren">
-                </form>
-            </div>
-
+                </section>
+            </main>
         </div>
+        <?php include "footer.php" ?>
 
-    </section>
-
-    <?php include "footer.php" ?>
+    </div>
     <script src="../script.js"></script>
     <script src="../pie.js"></script>
+
+
+
 </body>
 
 </html>

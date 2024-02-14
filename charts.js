@@ -34,7 +34,7 @@ d3.csv("beliebte-themen.csv").then(function (data) {
     .append("g")
     .call(d3.axisLeft(y))
     .selectAll("text")
-    .style("fill", "white")
+    .style("fill", "#b7bded")
 
     .attr("transform", "translate(-10,30)rotate(90)");
   // .attr("transform", "translate(-10,0)rotate(0)");
