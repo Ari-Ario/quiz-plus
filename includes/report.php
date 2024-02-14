@@ -47,13 +47,43 @@ addStatistic($topic, $procent, $dbConnection);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>report</title>
     <link rel="stylesheet" href="../styles.css">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+/*         const div = document.getElementById("dom-target");
+        const myData = parseFloat(div.textContent); */
+
+        const procent = <?php echo $procent ?>;
+        var data = google.visualization.arrayToDataTable([
+          ['Answer', 'procent'],
+          ['Correct',     procent],
+          ['False',      100 - procent],
+        ]);
+
+        var options = {
+          title: 'Quiz Result',
+          backgroundColor: "#eeeeee"
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+    </script>
 </head>
 <body>
 <?php include "header.php"; ?>
 <section id="form-quiz">
     <section id="form-container">
-        <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints" ; ?></h1>
+        <div id="piechart" class="report"></div>
+        
+<!--         <div id="dom-target" style="display: none;">
+            <?php echo $procent; ?>
+        </div> -->
 
         <button class="nav-link" onclick="openPopup()">Newsletter</button>
             <section id="popup" class="popup" style="margin: 0; padding: 0;">

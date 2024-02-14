@@ -13,6 +13,8 @@ use PHPMailer\PHPMailer\SMTP;
 
 require '../vendor/autoload.php';
 
+var_dump(getenv('PASSWORD'));
+
 // Check if today is the first day of the month
 if (date('j') === '14') {
     // Execute the monthly task here
@@ -68,6 +70,8 @@ function sendEmail($name, $email, $message){
 
     //Password to use for SMTP authentication
     $pass = getenv('PASSWORD', true) ?: getenv('PASSWORD');
+    echo $pass;
+    exit();
     $mail->Password = '';
 
     //Set who the message is to be sent from
