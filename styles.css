@@ -351,6 +351,7 @@ a {
   color: var(--light);
   padding: 1vh;
   border-radius: 1vh;
+  cursor: pointer;
 }
 
 /* PopUp in Report Page*/
