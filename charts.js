@@ -1,7 +1,7 @@
 // set the dimensions and margins of the graph
 const margin = { top: 20, right: 0, bottom: 40, left: 20 },
   width = 400 - margin.left - margin.right,
-  height = 200 - margin.top - margin.bottom;
+  height = 300 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
 const svg = d3
@@ -13,7 +13,7 @@ const svg = d3
   .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
 // Parse the Data
-d3.csv("beliebte-themen.csv").then(function (data) {
+d3.csv("./includes/data-beliebte-themen.csv").then(function (data) {
   // Add X axis
   const x = d3.scaleLinear().domain([0, 100]).range([0, width]);
   svg
@@ -36,7 +36,7 @@ d3.csv("beliebte-themen.csv").then(function (data) {
     .selectAll("text")
     .style("fill", "#b7bded")
 
-    .attr("transform", "translate(-10,30)rotate(90)");
+    .attr("transform", "translate(-10,20)rotate(90)");
   //Bars
   svg
     .selectAll("myRect")

@@ -39,6 +39,35 @@ if ($procent > 100) {
 $topic = $_SESSION['quiz']['topic'];
 addStatistic($topic, $procent, $dbConnection);
 
+
+
+// fetching data for the graphs
+global $dbConnection;
+
+$query = "SELECT topic AS Topic, repeated AS Anzahl  FROM statistic ORDER BY CONVERT(Anzahl,UNSIGNED) DESC LIMIT 4";
+$sqlStatement = $dbConnection->prepare($query);
+$sqlStatement->execute();
+$row = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
+// asort($row['Anzahl']);
+var_dump($row[0]['Topic']);
+$fp = fopen('data-beliebte-themen.csv', 'w');
+// write column names
+
+fputcsv($fp, ['Topic', 'Anzahl']);
+// end write columns names
+foreach ($row as $data) {
+    fputcsv($fp, $data);
+}
+
+fclose($fp);
+$keys = array_keys($row[0]);
+
+var_dump($keys);
+
+echo "<pre style='font-size:2rem; color:red;font-weight:900;'";
+var_dump($row);
+echo "</pre>";
+
 ?>
 
 <!DOCTYPE html>
