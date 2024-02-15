@@ -174,6 +174,15 @@ function takeStatisticSubject($topic, $dbConnection){
         return $fetchColumn;
 }
 
+function takeSatatisticsMain($dbConnection) {
+    $query = "SELECT `topic`, `repeated` FROM `statistic`
+    ORDER BY `repeated` ASC LIMIT 3";
+    $sqlStatement = $dbConnection->prepare($query);
+    $sqlStatement->execute();
+    $fetchAll = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
+    return $fetchAll;
+}
+
 //  extra functions to split the table questions into two other tables: question and answer
 // a function to check if a row is recorded once; it takes data from createROW
 function recordOnce($answer, $dbConnection){

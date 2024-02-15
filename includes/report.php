@@ -123,16 +123,17 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
 
                     <section class="modal-body">
                         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                        <section class="form-floating mb-3">
+                        <fieldset id="first-fieldset" class="form-floating mb-3">
+                            <legend class="legend-popup">Name</legend>
                             <input name="name" type="text" class="form-control rounded-3" id="name" placeholder="Ari">
-                            <label for="name">Name</label>
-                        </section>
-                        <section class="form-floating mb-3">
+                        </fieldset>
+                        <fieldset class="form-floating mb-3">
+                            <legend class="legend-popup">Email</legend>
                             <input name="email" type="email" class="form-control rounded-3" id="email" placeholder="ari@ario.com">
-                            <label for="email">Email</label>
-                        </section>
-                        <input id="register" onclick="printOutput()" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit" value="Register">
-
+                        </fieldset>
+                        <div id="register-btn">
+                            <input id="register" onclick="printOutput()" style="max-width: 50%;" type="submit" value="Register">
+                        </div>
                         </form>
                     </section>
             </section>

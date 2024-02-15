@@ -263,6 +263,15 @@ a {
   height: auto;
   border-radius: 42px;
  }
+ #cahrt-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ #selectionChart {
+  max-width:50%;
+  max-height: 50%;
+ }
  #charts {
   display: flex;
  }
@@ -323,10 +332,18 @@ a {
   background-color: var(--bluegrey);
 }
 
-
 #home-navigation {
   display: none;
   background-color: var(--bluedarkest);
+}
+
+#register-btn {
+  text-align: center;
+  max-width: 50%;
+}
+#register {
+  text-align: center;
+  max-width: 50%;
 }
 
 /* PopUp in Report Page*/
@@ -356,6 +373,7 @@ a {
   height: fit-content;
   /* transform: translate(-50%, -50%); */
   background-color: var(--bluedarker);
+  color: var(--light);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px var(--bluedarker);
@@ -376,7 +394,17 @@ a {
 }
 
 .modal-body {
-  margin-top: 5vh;
+  margin-top: 2vh;
+}
+.form-control {
+  padding: 1vh;
+  border-radius: 1vw;
+}
+.form-floating{
+  margin-bottom: 1vh;
+}
+.legend-popup {
+  border-radius: 4vw;
 }
 
 @media screen and (max-width: 768px)  {
@@ -490,5 +518,9 @@ a {
     max-width:50%;
     text-align: end;
     margin-top: 5vh;
+   }
+   #selectionChart {
+    max-width:70%;
+    max-height: 100%;
    }
 }

@@ -48,10 +48,41 @@ session_destroy();
                 <input type="hidden" name="IndexStep" id="IndexStep" value="1">
                 <input type="submit" id="start-btn" value="Start Quiz">
             </form>
-            <form action="/includes/mailer.php" method="POST">
+<!--             <form action="/includes/mailer.php" method="POST">
                 <input type="submit" value="mailer">
-            </form>
-            <canvas id="selectionChart" style="max-width:70%;"></canvas>
+            </form> -->
+            <?php
+                include "includes/db.php";
+                $allColumns = takeSatatisticsMain($dbConnection);
+                if (count($allColumns) < 3) {
+                    if (count($allColumns) === 2){
+                        $firstTopic = $allColumns[0]['topic'];
+                        $firstStatistic = $allColumns[0]['repeated'];
+                        $secondTopic = $allColumns[1]['topic'];
+                        $secondStatistic = $allColumns[1]['repeated'];
+                        $thirdTopic = "";
+                        $thirdStatistic = 0;
+                    } else if (count($allColumns) === 1) {
+                        $firstTopic = $allColumns[0]['topic'];
+                        $firstStatistic = $allColumns[0]['repeated'];
+                        $secondTopic = $thirdTopic = "";
+                        $secondStatistic = $thirdStatistic = 0;
+                    } else if (count($allColumns) === 0) {
+                        $firstTopic = $secondTopic = $thirdTopic = "";
+                        $firstStatistic = $secondStatistic = $thirdStatistic = 0;}
+                } else {
+                    $firstTopic = $allColumns[0]['topic'];
+                    $firstStatistic = $allColumns[0]['repeated'];
+                    $secondTopic = $allColumns[1]['topic'];
+                    $secondStatistic = $allColumns[1]['repeated'];
+                    $thirdTopic = $allColumns[2]['topic'];
+                    $thirdStatistic = $allColumns[2]['repeated'];
+                }
+/*                 print_r($allColumns);
+                echo "$firstTopic, $secondTopic, $thirdStatistic";
+                exit(); */
+            ?>
+            <div id="cahrt-main"><canvas id="selectionChart"></canvas></div>
         </section>
     </section>
 </main>
@@ -60,9 +91,13 @@ session_destroy();
     
     <script src="script.js"></script>
     <script>
-    const xValues = ["cinema", "Animals", "geography", "astronomy", "etc"];
-    const yValues = [55, 49, 44, 24, 15];
-    const barColors = ["red", "green","blue","orange","brown"];
+    const xValues = ["<?php echo $firstTopic; ?>", "<?php echo $secondTopic ?>", "<?php echo $thirdTopic ?>"];
+    const yValues = [<?php echo $firstStatistic ?>, <?php echo $secondStatistic ?>, <?php echo $thirdStatistic ?>];
+    const barColors = [
+        'rgba(255, 99, 132, 0.2)',
+        'rgba(255, 159, 64, 0.2)',
+        'rgba(75, 192, 192, 0.2)'
+        ];
 
     new Chart("selectionChart", {
     type: "bar",
@@ -70,15 +105,45 @@ session_destroy();
         labels: xValues,
         datasets: [{
         backgroundColor: barColors,
-        data: yValues
-        }]
+        data: yValues,
+        borderColor: [
+        'rgb(255, 99, 132)',
+        'rgb(255, 159, 64)',
+        'rgb(75, 192, 192)'
+        ],
+        borderWidth: 1
+        }],
     },
     options: {
-        legend: {display: false},
+        indexAxis: 'y',
+        legend: {
+            fontColor: '#eeeeee',
+            //display: false
+            labels: {
+                text: xValues[0],
+                fontColor: 'transparent', // change legend label color
+                // fontFamily: 'Arial', // change legend label font family
+                //fontSize: 16, // change legend label font size
+                // fontStyle: 'italic' // change legend label font style
+            }
+        },
         title: {
         display: true,
-        text: "Most selected Topics"
-        }
+        text: "Most selected Topics",
+        fontColor: '#eeeeee'
+        },
+        scales: {
+            yAxes: [{
+                ticks: {
+                    fontColor: '#e7b416' // change Y axis tick color
+                }
+            }],
+            xAxes: [{
+                ticks: {
+                    fontColor: '#e7b416' // change X axis tick color
+                }
+            }]
+        },
     }
     });
     </script>
