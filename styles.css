@@ -179,7 +179,7 @@ nav a:hover::after {
 
 .main-container {
   grid-area: main;
-  margin-top: 5rem;
+  margin-top: 2rem;
 }
 
 main {

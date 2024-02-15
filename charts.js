@@ -15,7 +15,7 @@ const svg = d3
 // Parse the Data
 d3.csv("beliebte-themen.csv").then(function (data) {
   // Add X axis
-  const x = d3.scaleLinear().domain([0, 120]).range([0, width]);
+  const x = d3.scaleLinear().domain([0, 100]).range([0, width]);
   svg
     .append("g")
     .attr("transform", `translate(0, ${height})`)
