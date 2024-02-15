@@ -337,13 +337,20 @@ a {
   background-color: var(--bluedarkest);
 }
 
-#register-btn {
-  text-align: center;
-  max-width: 50%;
-}
 #register {
+  position: relative;
   text-align: center;
-  max-width: 50%;
+  width: 100%;
+}
+#register-btn, #register-popup {
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  width: 50%;
+  background-color: var(--bluegrey);
+  color: var(--light);
+  padding: 1vh;
+  border-radius: 1vh;
 }
 
 /* PopUp in Report Page*/
@@ -506,16 +513,18 @@ a {
     border-radius: 40px;
   }
   #charts {
-    display: grid;
+    display: block;
     grid-template-columns: 1fr;
     justify-self: center;
     align-self: center;
    }
    #myChart {
-    max-width:100%;
+    width:100%;
+    height: auto;
    }
    #piechart {
-    max-width:50%;
+    width:50%;
+    height: auto;
     text-align: end;
     margin-top: 5vh;
    }

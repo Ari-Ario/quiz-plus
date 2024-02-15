@@ -66,8 +66,9 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
 
         var options = {
           title: 'Total accuracy done by ' + users + ' users' ,
+          legend: {textStyle: {color: '#6B7280'}}, // Set legend text color
           backgroundColor: 'transparent',
-          colors: ['#6b806f', '#cc3232']
+          colors: ['#6B7280', '#cc3232']
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -111,9 +112,9 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
             <canvas id="myChart" class="piechart" style="  max-width:70%;"></canvas>
             <div id="piechart" class="piechart" style="  max-width:30%;"></div>
         </section>
-
-        <button class="nav-link" onclick="openPopup()">Newsletter</button>
-
+        <div id="register">
+            <button id="register-btn" class="nav-link" onclick="openPopup()">Newsletter</button>
+        </div>
         <section id="popup" class="popup" style="margin: 0; padding: 0;">
             <section class="modal-dialog popup-content" role="document">
                 
@@ -131,9 +132,8 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
                             <legend class="legend-popup">Email</legend>
                             <input name="email" type="email" class="form-control rounded-3" id="email" placeholder="ari@ario.com">
                         </fieldset>
-                        <div id="register-btn">
-                            <input id="register" onclick="printOutput()" style="max-width: 50%;" type="submit" value="Register">
-                        </div>
+                            <input id="register-popup" onclick="printOutput()" type="submit" value="Register">
+                        
                         </form>
                     </section>
             </section>
@@ -152,7 +152,7 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
         const procent = <?php echo $procent; ?>;
         const yValues = [procent, 100-procent];
         const barColors = [
-        "#6b806f",
+        "#6B7280",
         "#cc3232"
         ];
 

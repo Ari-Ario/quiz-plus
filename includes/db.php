@@ -101,10 +101,10 @@ function test_input($data) {
     $data = htmlspecialchars($data);
     return $data;
 }
-if (isset($_POST['email'])){
+
+if (isset($_POST['email']) && !empty($_POST['email'])){
     newsletter($dbConnection);
 }
-
 
 
 function newsletter($dbConnection){
