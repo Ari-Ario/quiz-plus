@@ -37,7 +37,6 @@ d3.csv("beliebte-themen.csv").then(function (data) {
     .style("fill", "#b7bded")
 
     .attr("transform", "translate(-10,30)rotate(90)");
-  // .attr("transform", "translate(-10,0)rotate(0)");
   //Bars
   svg
     .selectAll("myRect")
@@ -45,8 +44,11 @@ d3.csv("beliebte-themen.csv").then(function (data) {
     .join("rect")
     .attr("x", x(0))
     .attr("y", (d) => y(d.Topic))
-    .attr("width", (d) => x(d.Anzahl))
     .attr("height", y.bandwidth())
+    .transition('width')
+    .duration(5000)
+    .attr('width', d => x(d.Anzahl))
     .attr("fill", "#b7bded")
-    .attr("class", "graph-hover");
+    .attr("class", "graph-hover")
+  
 });

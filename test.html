@@ -1,67 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Animated Horizontal Bar Chart with D3.js</title>
     <!-- Include D3.js library -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            font-family: 'Arial', sans-serif;
-        }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Arial", sans-serif;
+      }
 
-        svg {
-            display: block;
-            margin: auto;
-        }
+      svg {
+        display: block;
+        margin: auto;
+      }
 
-        .bar {
-            fill: steelblue;
-        }
+      .bar {
+        fill: steelblue;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <script>
-        // Your data
-        const data = [
-            { "letter": "A", "frequency": 0.5 },
-            { "letter": "B", "frequency": 0.1 },
-            { "letter": "C", "frequency": 0.2 },
-            { "letter": "D", "frequency": 0.4 }
-        ];
+      // Your data
+      const data = [
+        { letter: "A", frequency: 0.5 },
+        { letter: "B", frequency: 0.1 },
+        { letter: "C", frequency: 0.2 },
+        { letter: "D", frequency: 0.4 },
+      ];
 
-        // Set up the SVG container for the bar chart
-        const barSvg = d3.select('body')
-            .append('svg')
-            .attr('width', 400)
-            .attr('height', 300)
-            .append('g')
-            .attr('transform', 'translate(40,20)');
+      // Set up the SVG container for the bar chart
+      const barSvg = d3
+        .select("body")
+        .append("svg")
+        .attr("width", 400)
+        .attr("height", 300)
+        .append("g")
+        .attr("transform", "translate(40,20)");
 
-        // Create a horizontal bar chart
-        barSvg.selectAll('rect')
-            .data(data)
-            .enter()
-            .append('rect')
-            .attr('class', 'bar')
-            .attr('y', (d, i) => i * 80)
-            .attr('height', 30)
-            .attr('x', 0)
-            .transition()
-            .duration(5000)
-            .attr('x', 0)
-            .attr('width', d => d.frequency * 300);
-
+      // Create a horizontal bar chart
+      barSvg
+        .selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("y", (d, i) => i * 80)
+        .attr("height", 30)
+        .attr("x", 0)
+        .transition("width")
+        .duration(5000)
+        .attr("width", (d) => d.frequency * 300);
     </script>
-
-</body>
-
+  </body>
 </html>
