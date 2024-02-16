@@ -258,8 +258,28 @@ a {
   font-weight: bold;
   background-color: var(--greengrey);
  }
- #report {
-  padding-left: 4vw;
+ .report {
+  width: 30%; 
+  height: auto;
+  border-radius: 42px;
+ }
+ #cahrt-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ }
+ #selectionChart {
+  max-width:50%;
+  max-height: 50%;
+ }
+ #charts {
+  display: flex;
+ }
+ #myChart {
+  max-width:70%;
+ }
+ #piechart {
+  max-width:30%;
  }
 
 /* footer */
@@ -312,17 +332,33 @@ a {
   background-color: var(--bluegrey);
 }
 
-
 #home-navigation {
   display: none;
   background-color: var(--bluedarkest);
+}
+
+#register {
+  position: relative;
+  text-align: center;
+  width: 100%;
+}
+#register-btn, #register-popup {
+  font-size: large;
+  font-weight: bold;
+  text-align: center;
+  width: 50%;
+  background-color: var(--bluegrey);
+  color: var(--light);
+  padding: 1vh;
+  border-radius: 1vh;
+  cursor: pointer;
 }
 
 /* PopUp in Report Page*/
 .popup {
   display: none;
   position: relative;
-  top: -50%;
+  bottom: 50%;
   left: 38%;
   width: fit-content;
   height: fit-content;
@@ -339,12 +375,13 @@ a {
 
 .popup-content {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: fit-content;
   height: fit-content;
   /* transform: translate(-50%, -50%); */
   background-color: var(--bluedarker);
+  color: var(--light);
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 0 10px var(--bluedarker);
@@ -365,7 +402,17 @@ a {
 }
 
 .modal-body {
-  margin-top: 5vh;
+  margin-top: 2vh;
+}
+.form-control {
+  padding: 1vh;
+  border-radius: 1vw;
+}
+.form-floating{
+  margin-bottom: 1vh;
+}
+.legend-popup {
+  border-radius: 4vw;
 }
 
 @media screen and (max-width: 768px)  {
@@ -466,4 +513,24 @@ a {
     border: 1px dashed var(--bluedarkest);
     border-radius: 40px;
   }
+  #charts {
+    display: block;
+    grid-template-columns: 1fr;
+    justify-self: center;
+    align-self: center;
+   }
+   #myChart {
+    width:100%;
+    height: auto;
+   }
+   #piechart {
+    width:50%;
+    height: auto;
+    text-align: end;
+    margin-top: 5vh;
+   }
+   #selectionChart {
+    max-width:70%;
+    max-height: 100%;
+   }
 }
