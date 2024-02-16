@@ -68,7 +68,9 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
           title: 'Total accuracy done by ' + users + ' users' ,
           legend: {textStyle: {color: '#6B7280'}}, // Set legend text color
           backgroundColor: 'transparent',
-          colors: ['#6B7280', '#cc3232']
+          colors: ['#6B7280', '#cc3232'],
+          width: 200,
+          width_units: '%'
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
