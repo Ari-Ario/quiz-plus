@@ -7,7 +7,10 @@ include "db.php";
 // prettyPrint($_SESSION);
 // exit();
 $totalPoints = 0;
+
+
 foreach ($_SESSION as $key => $data) {
+
     if (isset($data['single-choice']) && $data['single-choice'] === "1") {
         $totalPoints += 1;
     } else {
@@ -49,7 +52,7 @@ $sqlStatement = $dbConnection->prepare($query);
 $sqlStatement->execute();
 $row = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
 // asort($row['Anzahl']);
-var_dump($row[0]['Topic']);
+// var_dump($row[0]['Topic']);
 $fp = fopen('data-beliebte-themen.csv', 'w');
 // write column names
 
@@ -62,11 +65,11 @@ foreach ($row as $data) {
 fclose($fp);
 $keys = array_keys($row[0]);
 
-var_dump($keys);
+// var_dump($keys);
 
-echo "<pre style='font-size:2rem; color:red;font-weight:900;'";
-var_dump($row);
-echo "</pre>";
+// echo "<pre style='font-size:2rem; color:red;font-weight:900;'";
+// var_dump($row);
+// echo "</pre>";
 
 ?>
 

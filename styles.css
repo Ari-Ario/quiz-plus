@@ -284,9 +284,9 @@ select {
 
 }
 
-#form-check input {
+/* #form-check input {
   visibility: hidden;
-}
+} */
 
 #form-check label {
   /* background-color: #000; */

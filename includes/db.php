@@ -39,7 +39,7 @@ function questionRequest($id, $dbConnection)
 }
 
 // melke debug
-// $test = questionRequest(4, $dbConnection);
+// $test = questionRequest(121, $dbConnection);
 // echo "<pre style='font-size:24px;'>";
 // var_dump($test);
 // echo "</pre>";
