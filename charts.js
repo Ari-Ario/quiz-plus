@@ -45,10 +45,11 @@ d3.csv("./includes/data-beliebte-themen.csv").then(function (data) {
     .attr("x", x(0))
     .attr("y", (d) => y(d.Topic))
     .attr("height", y.bandwidth())
-    .transition('width')
+    .transition("width")
     .duration(5000)
-    .attr('width', d => x(d.Anzahl))
+    .attr("width", (d) => x(d.Anzahl))
     .attr("fill", "#b7bded")
-    .attr("class", "graph-hover")
-  
+    .attr("class", "graph-hover");
+
+  d3.selectAll("rect").on("click", () => console.log("hallo"));
 });

@@ -42,20 +42,3 @@ window.onclick = function (event) {
 let labels = document.querySelectorAll("label");
 
 labels.forEach((e) => e.addEventListener("click", changeColor));
-
-function changeColor() {
- 
-
-
- 
-  // if (this.style.backgroundColor == "black") {
-  //   this.style.backgroundColor = "red";
-  //   console.log("changed color");
-  // } else if (this.style.backgroundColor == "red") {
-  //   this.style.backgroundColor = "black";
-  // }
-
-  //   this.style.backgroundColor = "red";
-}
-
-// Input Lable animation Start

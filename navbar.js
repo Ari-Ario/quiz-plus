@@ -1,4 +1,4 @@
-let hamburgerMenu = document.getElementById("hamburger-icon");
+const hamburgerMenu = document.getElementById("hamburger-icon");
 let navbarHamburger = document.getElementById("navbar-hamburger");
 let bars = hamburgerMenu.getElementsByTagName("span");
 let barArr = Array.from(bars);

@@ -7,24 +7,6 @@ session_destroy();
 
 include_once "includes/db.php";
 
-// global $dbConnection;
-
-// $query = "SELECT topic, id FROM question LIMIT 10";
-// $queryResult = $dbConnection->query($query);
-// $rows = $queryResult->fetchAll(PDO::FETCH_ASSOC);
-
-
-// $topics = [["topic" => "topic1", "anzahl" => 1000], ["topic" => "topic2", "anzahl" => 2000], ["topic" => "topic3", "anzahl" => 3000]];
-// echo "<pre style='font-size:20px;'>";
-// $myJSON = json_encode($rows);
-
-// // echo $myJSON;
-// // var_dump($rows);
-
-// var_dump($rows);
-// var_dump($myJSON);
-
-// echo "</pre>";
 
 ?>
 
@@ -101,11 +83,6 @@ include_once "includes/db.php";
         <script src="script.js"></script>
         <script src="navbar.js"></script>
 
-        <script>
-            <?php global $myJSON;
-            echo "let topics=$myJSON ;";
-            echo "console.log(topics)"; ?>
-        </script>
         <script src="charts.js"></script>
 
 
