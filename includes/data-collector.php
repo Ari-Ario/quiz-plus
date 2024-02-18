@@ -35,7 +35,7 @@ if (str_contains($scriptName, 'index')) {
     if ($quiz === null) {
         $questionNum = intval($_GET['questionNum']);
         $questionIdSequence = fetchQuestionIdSequence($_GET['topic'], $questionNum, $dbConnection);
-        // prettyPrint($questionIdSequence);
+        // var_dump($questionIdSequence);
         // exit();
 
         // break the code if the number of questions more than the selected numbers are -- TODO Warning in index
