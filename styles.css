@@ -35,7 +35,7 @@ html {
 
 body {
   margin: 0;
-  overflow: hidden;
+
   font-family: "Kanit", sans-serif;
   background-color: var(--main);
 
@@ -467,7 +467,7 @@ select {
   }
 
   svg {
-    width: 100%;
+    width: 300px;
 
   }
 
@@ -478,6 +478,10 @@ select {
 
   main {
     gap: 0;
+  }
+
+  .start-quiz {
+    max-width: 300px;
   }
 }
 

@@ -26,6 +26,7 @@ function fetchQuestionIdSequence($topic, $questionNum, $dbConnection)
     return $rows;
 }
 
+
 function questionRequest($id, $dbConnection)
 {
     // all data with id
@@ -37,6 +38,12 @@ function questionRequest($id, $dbConnection)
     return $rows;
 }
 
+// melke debug
+// $test = questionRequest(4, $dbConnection);
+// echo "<pre style='font-size:24px;'>";
+// var_dump($test);
+// echo "</pre>";
+
 
 // function to take all data from a table as an Array; here from questions
 function takeFromTable($dbConnection)
@@ -47,6 +54,7 @@ function takeFromTable($dbConnection)
     $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
     return $rows;
 }
+
 
 
 function addStatistic($topic, $procent, $dbConnection)

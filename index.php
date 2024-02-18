@@ -51,7 +51,7 @@ include_once "includes/db.php";
 
                     <div class="in-group">
                         <label for="questionNum"># of questions:</label>
-                        <input type="number" name="questionNum" id="questionNum" value="10">
+                        <input type="number" name="questionNum" id="questionNum" value="10" min="1">
                         <span class="error"> <?php echo $numberErr = ''; ?></span>
                     </div>
                     <div class="in-group">
@@ -81,7 +81,7 @@ include_once "includes/db.php";
         <?php include './includes/footer.php' ?>
 
         <script src="script.js"></script>
-        <script src="navbar.js"></script>
+
 
         <script src="charts.js"></script>
 
