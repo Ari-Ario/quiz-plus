@@ -3,10 +3,9 @@
 
 
 
-$dbName = getenv('MYSQL_DATABASE');
-
-$dbUser = getenv('MYSQL_USER');
-$dbPassword = getenv('MYSQL_PASSWORD');
+$dbName = getenv('DB_NAME');
+$dbUser = getenv('DB_USER');
+$dbPassword = getenv('DB_PASSWORD');
 $dbHost = getenv('DB_HOST');
 
 try {
@@ -20,7 +19,7 @@ try {
 }
 
 
-$query = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR (255),password VARCHAR (255))";
+$query = "CREATE TABLE IF NOT EXISTS users (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR (255),password VARCHAR (255),email VARCHAR (255))";
 
 $query = "INSERT INTO users (name,password) VALUES (:user,:pass)";
 $query = "UPDATE users SET password= :pass where name=:user";

@@ -65,7 +65,7 @@ function login($username, $password)
         return false;
     } elseif ($username == $user['name'] && password_verify($password, $user['password'])) {
         $_SESSION['username'] = $username;
-        header('Location: ../welcome.php');
+        header('Location: ../quiz.php');
         return true;
     }
     header('Location: ../index.php');

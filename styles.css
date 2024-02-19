@@ -564,8 +564,16 @@ canvas {
   .canvas-container {
     width: 400px;
   }
+
+
 }
 
+.error {
+  color: red !important;
+  font-size: var(--bigText);
+  margin: 0;
+
+}
 
 /* dont show hamburger menu items incase you increase window width after clicking the hamburger symbol */
 @media screen and (min-width: 600px) {

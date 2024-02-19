@@ -1,23 +1,11 @@
 <?php
+
+
 if (session_status() === PHP_SESSION_NONE) {
     // Starte die Session
     session_start();
 }
 
-include_once "database/pdoConnection.php";
-
-global $dbConn;
-
-$query = "SELECT * FROM users";
-$query = $dbConn->prepare($query);
-$query->execute();
-$result = $query->fetchAll(PDO::FETCH_ASSOC);
-
-// echo "<pre>";
-// var_dump($result);
-// var_dump($_SESSION['credentialErrors']);
-// var_dump($_SESSION);
-// echo "<br></pre>";
 
 ?>
 <!DOCTYPE html>
@@ -38,6 +26,10 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 <body>
 
+
+
+
+
     <div class="container">
         <?php include './includes/header.php'; ?>
         <div class="main-container">
@@ -47,30 +39,55 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                     <h1 class="title">ARAM</h1>
                     <p class="slogan">Erweitere dein <br> Allgemein Wissen <br> mit ARAM</p>
                 </div>
+                <?php
+                if (isset($_SESSION['credentialErrors']['created'])) {
+                    echo "<h2  style='color:red;' class='success'>" . $_SESSION['credentialErrors']['created'] . "</h2>";
+                }
 
+                ?>
 
-                <form class="start-quiz" action=" auth/login.php" method="POST">
-
-                    <?php echo "<p class='error'>" . $_SESSION['credentialErrors'][3]  . "</p>" ?? ''; ?>
+                <form class="start-quiz" action=" auth/create.php" method="POST">
                     <div class="in-group">
                         <label for="username">username</label>
                         <input type="text" name="username" id="username">
+                        <?php if (isset($_SESSION['credentialErrors'])) {
+                            echo "<p class='error'>" . $_SESSION['credentialErrors'][0]  . "</p>" ?? '';
+                            echo "<p class='error'>" . $_SESSION['credentialErrors'][4]  . "</p>" ?? '';
+                        }  ?>
                     </div>
 
-                    <?php //echo "<p class='error'>" . $_SESSION['credentialErrors'][0]  . "</p>"; 
-                    ?>
+
+
                     <div class="in-group">
+                    </div>
+
+                    <div class="in-group">
+
+                    </div>
+
+                    <div class="in-group">
+                        <label for="email">e-mail</label>
+                        <input type="email" name="email" id="email">
+                        <?php if (isset($_SESSION['credentialErrors'])) {
+                            echo "<p class='error'>" . $_SESSION['credentialErrors'][2]  . "</p>" ?? '';
+                            echo "<p class='error'>" . $_SESSION['credentialErrors'][5]  . "</p>" ?? '';
+                        }  ?>
+                    </div>
+
+                    <div class="in-group">
+
                         <label for="password">password</label>
                         <input type="password" name="password" id="password">
+                        <?php if (isset($_SESSION['credentialErrors'])) {
+                            echo "<p class='error'>" . $_SESSION['credentialErrors'][1]  . "</p>" ?? '';
+                        }  ?>
+                    </div>
+                    <div class="in-group">
+                        <input type="submit" value="sign up" name="create">
                     </div>
 
-                    <?php //echo "<p class='error'>" . $_SESSION['credentialErrors'][1] . "</p>"; 
-                    ?>
-                    <div class="in-group">
-                        <input type="submit" value="login" name="submit">
-                    </div>
                 </form>
-                <a class="sign-up" href="signup.php">Don't have an account yet? sign up now!</a>
+                <a href="index.php">home</a>
 
             </main>
         </div>
@@ -84,13 +101,17 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
         <script src="charts.js"></script>
+
 </body>
 <?php echo '<script src="assets/js/script.js"></script>';
 
 
-// $_SESSION['credentialErrors'][0] = "";
-// $_SESSION['credentialErrors'][1] = "";
-$_SESSION['credentialErrors'][3] = "";
+$_SESSION['credentialErrors'][0] = "";
+$_SESSION['credentialErrors'][1] = "";
+$_SESSION['credentialErrors'][2] = "";
+$_SESSION['credentialErrors'][4] = "";
+$_SESSION['credentialErrors'][5] = "";
+// $_SESSION["credentialErrors"]['created'] = "";
 
 
 
