@@ -103,7 +103,7 @@ include "data-collector.php";
                     ?>
                     <input type="hidden" name="questionNum" value="<?php echo $quiz["questionNum"]; ?>">
                     <input type="hidden" name="lastQuestionIndex" name="lastQuestionIndex" value="<?php echo $currentQuestionIndex; ?>">
-                    <input type="hidden" name="multipleChoice" value="<?php echo $multipleChoice ? true : false; ?>">
+                    <input type="hidden" name="multipleChoice" value="<?php echo $multipleChoice ? "true" : "false"; ?>">
                     <input type="hidden" id="maxPoints" name="maxPoints" value="">
                     <input type="hidden" name="indexStep" name="indexStep" value="1">
 
