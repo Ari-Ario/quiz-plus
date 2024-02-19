@@ -105,6 +105,37 @@ $keys = array_keys($row[0]);
                         <h1 id="report"><?php echo "you answered $procent procent of the questions correctly with total points: $totalPoints"; ?></h1>
                     </section>
 
+
+                    <!-- Roger's Chart From W3schools animiert [x] und ohne flackern [x] ------ -->
+                    <canvas id="myChart" style="width:100%;max-width:600px"></canvas>
+                    <script>
+                        const yRichtig = <?php echo $procent ?>;
+                        const yFalsch = 100 - <?= $procent ?>;
+                        const xValues = ["Richtig", "Falsch"];
+                        const yValues = [yRichtig, yFalsch];
+                        const barColors = [
+                            "#6b806f",
+                            "#000532"
+                        ];
+
+                        new Chart("myChart", {
+                            type: "pie",
+                            data: {
+                                labels: xValues,
+                                datasets: [{
+                                    backgroundColor: barColors,
+                                    data: yValues
+                                }]
+                            },
+                            options: {
+                                title: {
+                                    display: true,
+                                    text: "Percent"
+                                }
+                            }
+                        });
+                    </script>
+                    <!-- End of Roger's Chart -->
                     <button onclick="update(data1)">Data 1</button>
                     <button onclick="update(data2)">Data 2</button>
                     <div id="my_dataviz"></div>
