@@ -4,14 +4,14 @@
   function changeVariables(){
     let windowSize = window.innerWidth;
     if (windowSize<600) {
-      console.log(windowSize+"mobile")
+
       // location.reload();
      var  wid = hei = 300;
      var  mar = 20;
       return [wid,mar]
       
     } else {
-      console.log(windowSize+"desktop")
+    
       // location.reload();
 
       var wid = hei = 450;
