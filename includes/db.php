@@ -176,7 +176,7 @@ function takeStatisticSubject($topic, $dbConnection){
 
 function takeSatatisticsMain($dbConnection) {
     $query = "SELECT `topic`, `repeated` FROM `statistic`
-    ORDER BY `repeated` ASC LIMIT 3";
+    ORDER BY `repeated` DESC LIMIT 3";
     $sqlStatement = $dbConnection->prepare($query);
     $sqlStatement->execute();
     $fetchAll = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);

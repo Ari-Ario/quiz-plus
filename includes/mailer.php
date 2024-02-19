@@ -13,13 +13,12 @@ use PHPMailer\PHPMailer\SMTP;
 
 require '../vendor/autoload.php';
 
-var_dump(getenv('PASSWORD'));
 
 // Check if today is the first day of the month
-if (date('j') === '14') {
+if (date('j') === '19') {
     // Execute the monthly task here
     $allEmails = callEmails($dbConnection);
-    print_r($allEmails);
+    // print_r($allEmails);
     foreach($allEmails as $key => $row){
         if ($row['email']){
             $name = $row['user_name'];
@@ -70,8 +69,6 @@ function sendEmail($name, $email, $message){
 
     //Password to use for SMTP authentication
     $pass = getenv('PASSWORD', true) ?: getenv('PASSWORD');
-    echo $pass;
-    exit();
     $mail->Password = '';
 
     //Set who the message is to be sent from
@@ -93,25 +90,25 @@ function sendEmail($name, $email, $message){
     $url = 'https://www.php.net/manual/en/function.getenv.php'; // Replace with the URL of your webpage
     $content = file_get_contents($url);
 
-    $chartImage = 'path/to/chart.png'; // Path to the generated image; second and important possibility for our charts
+    $chartImage = 'path/to/chart.png'; // Path to the generated image; report charts generieren
 
     // Set the HTML content of the email to the webpage content
     $mail->isHTML(true);
-    // $mail->Body = $content;
+    // $mail->MsgHTML(file_get_contents($url));
 
     //Set the subject line
     $mail->Subject = 'Newsletter From ARAM';
     $mail->Body = "
         Email: $email
         Dear $name 
-        Message: Here is our NEWALETTER $content" . '<html><body><h1>Webpage with Visualization</h1><img src="' . $chartImage . '" alt="Chart"></body></html>';
+        Message: Here is our NEWALETTER $content" . '<html><br><body><h1>Webpage with Visualization</h1><img src="' . $chartImage . '" alt="Chart"></body></html>';
 
     //Attach an image file
     //$mail->addAttachment('images/phpmailer_mini.png');
 
     //send the message, check for errors
     if ($mail->send()) {
-        $response = "Message sent to $email";
+        $response = "Message sent to $email <br>";
     } else {
         // Handle the case where the script is accessed directly without a POST request
         $response = "Error: Oops! Something went wrong while sending email: $email";
