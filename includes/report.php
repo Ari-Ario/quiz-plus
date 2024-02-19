@@ -75,7 +75,6 @@ fclose($fp);
 
 // $repeatedQuiz = $totalStatisticSubject[0]['repeated'];
 // $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
-
 ?>
 
 <!DOCTYPE html>
@@ -203,12 +202,8 @@ fclose($fp);
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            const procent = <?php
-                            // echo $totalProcentQuiz / $repeatedQuiz 
-                            ?>;
-            const users = <?php
-                            //  echo $repeatedQuiz 
-                            ?>;
+            const procent = <?php echo $totalProcentQuiz / $repeatedQuiz ?>;
+            const users = <?php echo $repeatedQuiz ?>;
             var data = google.visualization.arrayToDataTable([
                 ['Answer', 'procent'],
                 ['Correct', procent],
