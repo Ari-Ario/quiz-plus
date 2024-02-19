@@ -8,7 +8,6 @@ include "db.php";
 // exit();
 $totalPoints = 0;
 
-
 foreach ($_SESSION as $key => $data) {
 
     if (isset($data['single-choice']) && $data['single-choice'] === "1") {
@@ -25,12 +24,16 @@ foreach ($_SESSION as $key => $data) {
                 $counter += 0;
             }
         }
-        $totalPoints += $counter;
     }
+    $totalPoints += $counter;
 }
 
 
-$procent = round(($totalPoints / (count($_SESSION))) * 100, 2);
+// $procent = round(($totalPoints / (count($_SESSION))) * 100, 2);
+$procent = round(($totalPoints / (intval($_GET['questionNum']))) * 100, 2);
+
+// var_dump($procent, $totalPoints, $_GET['questionNum']);
+
 if ($procent > 100) {
     $procent = 100;
 } else if ($procent < 0) {
