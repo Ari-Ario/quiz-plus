@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Feb 08, 2024 at 10:00 AM
+-- Generation Time: Feb 19, 2024 at 12:34 PM
 -- Server version: 8.3.0
 -- PHP Version: 8.2.8
 
@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `question` (
   `id` int NOT NULL,
-  `question_text` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `topic` varchar(127) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `question_text` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `topic` varchar(127) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -201,7 +201,70 @@ INSERT INTO `question` (`id`, `question_text`, `topic`) VALUES
 (161, 'What is the hottest planet in our solar system?', 'astronomy'),
 (162, 'What is the process of a star dying called?', 'astronomy'),
 (163, 'What is the name of the force that pulls objects towards each other?', 'astronomy'),
-(164, 'What are the two types of planets in our solar system?', 'astronomy');
+(164, 'What are the two types of planets in our solar system?', 'astronomy'),
+(165, 'Which animal has the biggest heart in the world?', 'animals'),
+(166, 'Which is the fastest animal in the world?', 'animals'),
+(167, 'Which animal lives the longest on earth?', 'animals'),
+(168, 'Which of the following animal is not a mammal?', 'animals'),
+(169, 'Which fish needs to come up for air?', 'animals'),
+(170, 'which animal can only be found in Australia?', 'animals'),
+(171, 'Which animal has the longest gestation period?', 'animals'),
+(172, 'how long can camel stay without water?', 'animals'),
+(173, 'which animal does not belong to the cold-blooded animals?', 'animals'),
+(174, 'How long can crocodile go without food?', 'animals'),
+(175, 'Which category of musical instrument is reputed to be the oldest in the world?', 'music'),
+(176, 'Which is the national musical instrument of Japan?', 'music'),
+(177, 'Which rapper married TV star Kim Kardashian?', 'music'),
+(178, 'Sometimes, fans like to believe that they see secret messages on the covers of record albums. According to a 1969 rumor, secret messages on album covers revealed that which Beatle had died in 1966?', 'music'),
+(179, 'Which controversial and collectable single by The Sex Pistols was banned by the B.B.C', 'music'),
+(180, 'In which US city was the Dixieland jazz style developed?', 'music'),
+(181, 'The Boogie genre is closest to these styles:', 'music'),
+(182, 'the Ramones arrived on the American music scene and are sometimes cited as the first true punk band. In which year did they release their debut album?', 'music'),
+(183, 'Farrokh Bulsara is/was the real name of…', 'music'),
+(184, 'The Hammond Organ has influenced genres from R&B, Jazz, Gospel, Funk to Hard Rock. It was first manufactured in', 'music'),
+(185, 'did Ozzy Osbourne really bite the head off a real bat during a concert?', 'music'),
+(186, 'What does the name “ukulele” mean in Hawaiian?', 'music'),
+(187, 'According to Guinness World Records, Madonna is the best selling female artist of all-time. By combining her unique abilities as a singer, songwriter and performer, she has become the most successful solo act in popular music. Which of her best selling si', 'music'),
+(188, 'Which one of the following chord symbols describes a dominant seventh chord', 'music'),
+(189, 'Which early punk band caused a storm in Britain with singles like \'Anarchy in the U.K.\' and \'God Save the Queen\'? Hint ', 'music'),
+(190, 'The first Hammond organ, the Hammond Model A, started production in this year:', 'music'),
+(191, 'Which of the following styles preceded Be Bop?', 'music'),
+(192, 'What rock icon was the founder of The Society for the Prevention of Cruelty to Long-haired Men?\n', 'music'),
+(193, 'Towards the end of the 1970s. Which style originating in Jamaica was mixed with punk to create a genre known as two-tone?', 'music'),
+(194, 'The “Model-A” was the first Hammond Organ that hit the market. The most legendary Model, that came out 20 years later, was called…', 'music'),
+(195, 'The saxophone is a popular jazz instrument, but what was its first use?', 'music'),
+(196, 'In the early 21st century, some bands with punk roots were given the label \'emo\' (even if they didn\'t associate themselves with the genre). What made the emo subgenre so controversial? ', 'music'),
+(197, 'Most famous analogue synthesizers use this method to generate different timbres: ', 'music'),
+(198, 'Which one is NOT originally a South American genre of music?', 'music'),
+(199, 'In The Big Lebowski, The Dude can’t stand which band?', 'music'),
+(200, 'What was Madonna\'s first top 10 hit?\n', 'music'),
+(201, 'The most famous Hammond Organs generate the frequencies mechanically and convert them to current by a process called… ', 'music'),
+(202, 'Johann Sebastian Bach was a composer and musician of which musical period?', 'music'),
+(203, 'Which city is Techno said to originate from?', 'music'),
+(204, 'Birds evolved from dinosaurs. True or false? ', 'science'),
+(205, 'Which organ of the human body consumes the most energy?', 'science'),
+(206, 'In which galaxy is the Earth located?', 'science'),
+(207, 'What is the chemical formula of water?', 'science'),
+(208, 'Are humans carnivores, omnivores or herbivores?', 'science'),
+(209, 'What is the only natural satellite of the Earth? ', 'science'),
+(210, 'What is the age of the universe? ', 'science'),
+(211, 'Could you still live if the Earth stopped spinning? Yes or no. ', 'science'),
+(212, 'Tyrannosaurus rex was the largest dinosaur that ever lived. True or False?', 'science'),
+(213, 'What is the death of each member of a species called? ', 'science'),
+(214, 'What is the closest planet to the Sun?', 'science'),
+(215, 'An electron carries a positive charges?', 'science'),
+(216, 'What are the 206 bones of the human body?', 'science'),
+(217, 'What is the strongest bone in the human body?', 'science'),
+(218, 'What does NBA stand for ?', 'basketball'),
+(219, 'Who is the shortest player in NBA history to win the slam dunk contest?\r\n', 'basketball'),
+(220, 'Who is the only player to win the NBA Defensive Player of the Year award four times in a row?', 'basketball'),
+(221, 'Who holds the record for the most points scored in a single game in NBA history?\r\n', 'basketball'),
+(222, 'What was the original name of the Toronto Raptors?\r\n', 'basketball'),
+(223, 'Who holds the record for the most steals in a single game in NBA history?\r\n', 'basketball'),
+(224, 'What was the first year that the NBA introduced the slam dunk contest?\r\n', 'basketball'),
+(225, 'Who is the only player in NBA history to win the regular season MVP, Finals MVP, All-Star Game MVP, and Defensive Player of the Year in the same season?', 'basketball'),
+(226, 'Which team has won the most NBA Championships in history?\r\n', 'basketball'),
+(227, 'Which team holds the record for the longest winning streak in NBA history?\r\n', 'basketball');
 
 --
 -- Indexes for dumped tables

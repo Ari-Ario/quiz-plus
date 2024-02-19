@@ -38,6 +38,9 @@ session_destroy();
                     <option value="animals">Animals</option>
                     <option value="astronomy">astronomy</option>
                     <option value="geography">Geography</option>
+                    <option value="music">Music</option>
+                    <option value="science">Science</option>
+                    <option value="basketball">Basketball</option>
                 </select>
                 <br>
                 <label for="questionNum"># of questions:</label>
@@ -48,9 +51,13 @@ session_destroy();
                 <input type="hidden" name="IndexStep" id="IndexStep" value="1">
                 <input type="submit" id="start-btn" value="Start Quiz">
             </form>
-<!--             <form action="/includes/mailer.php" method="POST">
+            <!-- <form action="/includes/test.php" method="POST">
+            <input type="submit" value="table"> -->
+
+            <form action="/includes/mailer.php" method="POST">
                 <input type="submit" value="mailer">
-            </form> -->
+            </form>
+            
             <?php
                 include "includes/db.php";
                 $allColumns = takeSatatisticsMain($dbConnection);

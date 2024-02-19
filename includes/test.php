@@ -3,7 +3,7 @@ include "db.php";
 
 $rows = takeFromTable($dbConnection);
 
-prettyPrint($rows);
+// prettyPrint($rows);
 
 foreach ($rows as $key => $data) {
     for ($i = 1; $i <= 5; $i++){
@@ -20,7 +20,7 @@ foreach ($rows as $key => $data) {
             }
         }
         echo "$answer, $correctAnswer, $questionId <br>";
-        // insertIntoTable($answer, $correctAnswer, $questionId, $dbConnection);
+        insertIntoTable($answer, $correctAnswer, $questionId, $dbConnection);
     }
     echo "--------------------------------------------- <br>";
 }
