@@ -26,7 +26,6 @@ function fetchQuestionIdSequence($topic, $questionNum, $dbConnection)
     return $rows;
 }
 
-
 function questionRequest($id, $dbConnection)
 {
     // all data with id
@@ -38,12 +37,6 @@ function questionRequest($id, $dbConnection)
     return $rows;
 }
 
-// melke debug
-// $test = questionRequest(121, $dbConnection);
-// echo "<pre style='font-size:24px;'>";
-// var_dump($test);
-// echo "</pre>";
-
 
 // function to take all data from a table as an Array; here from questions
 function takeFromTable($dbConnection)
@@ -54,7 +47,6 @@ function takeFromTable($dbConnection)
     $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
     return $rows;
 }
-
 
 
 function addStatistic($topic, $procent, $dbConnection)
@@ -112,9 +104,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-
-if (isset($_POST['email']) && !empty($_POST['email'])) {
-
+if (isset($_POST['email'])) {
     newsletter($dbConnection);
 }
 
@@ -166,37 +156,6 @@ function newsletter($dbConnection)
 }
 
 $emailErr;
-
-
-function callEmails($dbConnection)
-{
-    $querySelect = "SELECT * FROM `newsletter`";
-    // all data with 
-    $sqlStatement = $dbConnection->query($querySelect);
-    $rows = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
-    return $rows;
-}
-
-function takeStatisticSubject($topic, $dbConnection)
-{
-
-    $query = "SELECT * FROM `statistic`
-        WHERE `topic` = '$topic'";
-    $sqlStatement = $dbConnection->prepare($query);
-    $sqlStatement->execute();
-    $fetchColumn = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
-    return $fetchColumn;
-}
-
-function takeSatatisticsMain($dbConnection)
-{
-    $query = "SELECT `topic`, `repeated` FROM `statistic`
-    ORDER BY `repeated` ASC LIMIT 3";
-    $sqlStatement = $dbConnection->prepare($query);
-    $sqlStatement->execute();
-    $fetchAll = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
-    return $fetchAll;
-}
 
 //  extra functions to split the table questions into two other tables: question and answer
 // a function to check if a row is recorded once; it takes data from createROW

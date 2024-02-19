@@ -2,18 +2,15 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
-
+// if (isset($_SESSION['topic'])) {$_SESSION['topic'] = $_GET['topic'];}
 include "db.php";
+// $topic = $_GET['topic'];
 
-
-if (isset($_SESSION['quiz'])) {
-    $quiz = $_SESSION['quiz'];
-} else $quiz = null;
+if (isset($_SESSION['quiz'])) $quiz = $_SESSION['quiz'];
+else $quiz = null;
 
 if (isset($_GET["lastQuestionIndex"])) {
     $lastQuestionIndex = intval($_GET["lastQuestionIndex"]);
-
 
     if ($lastQuestionIndex >= 0) {
         $questionName = "question-" . $lastQuestionIndex;
@@ -25,8 +22,6 @@ if (isset($_GET["lastQuestionIndex"])) {
 // the name of the sites is saved inside global variable:
 $scriptName = $_SERVER['SCRIPT_NAME'];
 
-
-
 if (str_contains($scriptName, 'index')) {
     session_destroy();
     session_unset();
@@ -35,7 +30,7 @@ if (str_contains($scriptName, 'index')) {
     if ($quiz === null) {
         $questionNum = intval($_GET['questionNum']);
         $questionIdSequence = fetchQuestionIdSequence($_GET['topic'], $questionNum, $dbConnection);
-        // var_dump($questionIdSequence);
+        // prettyPrint($questionIdSequence);
         // exit();
 
         // break the code if the number of questions more than the selected numbers are -- TODO Warning in index

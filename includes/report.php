@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-include dirname(__DIR__) . "/utils/helper.php";
+// include dirname(__DIR__) . "/utils/helper.php";
 include "data-collector.php";
 
 $totalPoints = 0;
@@ -65,7 +65,7 @@ foreach ($row as $data) {
 }
 
 fclose($fp);
-$keys = array_keys($row[0]);
+// $keys = array_keys($row[0]);
 
 // var_dump($keys);
 
@@ -75,6 +75,7 @@ $keys = array_keys($row[0]);
 
 // $repeatedQuiz = $totalStatisticSubject[0]['repeated'];
 // $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
+
 ?>
 
 <!DOCTYPE html>
@@ -95,12 +96,12 @@ $keys = array_keys($row[0]);
 
 
 
-    <script src="https://d3js.org/d3.v6.js"></script>
+    <!-- <script src="https://d3js.org/d3.v6.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
 
 
-    <script src="https://d3js.org/d3.v6.js"></script>
+    <!-- <script src="https://d3js.org/d3.v6.js"></script> -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
 
@@ -167,8 +168,8 @@ $keys = array_keys($row[0]);
     <script src="../script.js"></script>
     <script src="../pie.js"></script>
     <script>
-        const yRichtig = <?php echo $procent; ?>
-        const yFalsch = 100 - <?php echo $procent; ?>
+        const yRichtig = <?php echo $procent ?>;
+        const yFalsch = 100 - <?= $procent ?>;
         const xValues = ["Richtig", "Falsch"];
         const yValues = [yRichtig, yFalsch];
         const barColors = [
@@ -202,8 +203,12 @@ $keys = array_keys($row[0]);
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            const procent = <?php echo $totalProcentQuiz / $repeatedQuiz ?>;
-            const users = <?php echo $repeatedQuiz ?>;
+            const procent = <?php
+                            // echo $totalProcentQuiz / $repeatedQuiz 
+                            ?>;
+            const users = <?php
+                            //  echo $repeatedQuiz 
+                            ?>;
             var data = google.visualization.arrayToDataTable([
                 ['Answer', 'procent'],
                 ['Correct', procent],
@@ -228,9 +233,7 @@ $keys = array_keys($row[0]);
 
         // second chart of all users answer in the same topic
         // const xValuesall = ['Correct', 'False'];
-        // const totalprocent = 
-        //use php// echo $totalProcentQuiz / $repeatedQuiz 
-
+        // const totalprocent = <?php echo $totalProcentQuiz / $repeatedQuiz ?>;
         // const yValuesall = [totalprocent, 100-totalprocent];
         // const barColors = [
         // "#6b806f",
