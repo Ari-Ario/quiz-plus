@@ -73,8 +73,8 @@ $keys = array_keys($row[0]);
 // var_dump($row);
 // echo "</pre>";
 
-$repeatedQuiz = $totalStatisticSubject[0]['repeated'];
-$totalProcentQuiz = $totalStatisticSubject[0]['procent'];
+// $repeatedQuiz = $totalStatisticSubject[0]['repeated'];
+// $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
 ?>
 
 <!DOCTYPE html>
@@ -85,7 +85,7 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>report</title>
     <link rel="stylesheet" href="../styles.css">
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <!-- <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -103,63 +103,7 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
     <script src="https://d3js.org/d3.v6.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        google.charts.setOnLoadCallback(drawChart);
 
-        function drawChart() {
-            const procent = <?php echo $totalProcentQuiz / $repeatedQuiz ?>;
-            const users = <?php echo $repeatedQuiz ?>;
-            var data = google.visualization.arrayToDataTable([
-                ['Answer', 'procent'],
-                ['Correct', procent],
-                ['False', 100 - procent],
-            ]);
-
-            var options = {
-                title: 'Total accuracy done by ' + users + ' users',
-                legend: {
-                    textStyle: {
-                        color: '#6B7280'
-                    }
-                }, // Set legend text color
-                backgroundColor: 'transparent',
-                colors: ['#6B7280', '#cc3232']
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-            chart.draw(data, options);
-        }
-
-        // second chart of all users answer in the same topic
-        // const xValuesall = ['Correct', 'False'];
-        // const totalprocent = <?php echo $totalProcentQuiz / $repeatedQuiz ?>;
-        // const yValuesall = [totalprocent, 100-totalprocent];
-        // const barColors = [
-        // "#6b806f",
-        // "#cc3232"
-        // ];
-
-        // new Chart("piechart", {
-        // type: "pie",
-        // data: {
-        //     labels: xValuesall,
-        //     datasets: [{
-        //     backgroundColor: barColors,
-        //     data: yValuesall
-        //     }]
-        // },
-        // options: {
-        //     title: {
-        //     display: true,
-        //     text: 'Total accuracy done by ' + procent + 'users'
-        //     }
-        // }
-        // });
-    </script>
 </head>
 
 <body>
@@ -223,8 +167,8 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
     <script src="../script.js"></script>
     <script src="../pie.js"></script>
     <script>
-        const yRichtig = <?php echo $procent ?>;
-        const yFalsch = 100 - <?= $procent ?>;
+        const yRichtig = <?php echo $procent; ?>
+        const yFalsch = 100 - <?php echo $procent; ?>
         const xValues = ["Richtig", "Falsch"];
         const yValues = [yRichtig, yFalsch];
         const barColors = [
@@ -251,7 +195,65 @@ $totalProcentQuiz = $totalStatisticSubject[0]['procent'];
             }
         });
     </script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        google.charts.setOnLoadCallback(drawChart);
 
+        function drawChart() {
+            const procent = <?php echo $totalProcentQuiz / $repeatedQuiz ?>;
+            const users = <?php echo $repeatedQuiz ?>;
+            var data = google.visualization.arrayToDataTable([
+                ['Answer', 'procent'],
+                ['Correct', procent],
+                ['False', 100 - procent],
+            ]);
+
+            var options = {
+                title: 'Total accuracy done by ' + users + ' users',
+                legend: {
+                    textStyle: {
+                        color: '#6B7280'
+                    }
+                }, // Set legend text color
+                backgroundColor: 'transparent',
+                colors: ['#6B7280', '#cc3232']
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+
+        // second chart of all users answer in the same topic
+        // const xValuesall = ['Correct', 'False'];
+        // const totalprocent = 
+        //use php// echo $totalProcentQuiz / $repeatedQuiz 
+
+        // const yValuesall = [totalprocent, 100-totalprocent];
+        // const barColors = [
+        // "#6b806f",
+        // "#cc3232"
+        // ];
+
+        // new Chart("piechart", {
+        // type: "pie",
+        // data: {
+        //     labels: xValuesall,
+        //     datasets: [{
+        //     backgroundColor: barColors,
+        //     data: yValuesall
+        //     }]
+        // },
+        // options: {
+        //     title: {
+        //     display: true,
+        //     text: 'Total accuracy done by ' + procent + 'users'
+        //     }
+        // }
+        // });
+    </script>
 
 </body>
 

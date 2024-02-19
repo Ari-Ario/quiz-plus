@@ -53,7 +53,7 @@ include "data-collector.php";
             <main>
                 <!-- questions -->
                 <section class="header-form">
-                    <h1 class="question-text"><?php echo $question[0]['question_text'] ?></h1>
+                    <h1 class="question-text"><?php echo $question[0]['question_text']; ?></h1>
                 </section>
 
                 <form class="questions" action="<?php echo $actionUrl; ?>" method="get">
@@ -84,7 +84,9 @@ include "data-collector.php";
 
                             if (in_array($i, $correctItems)) {
                                 $value = 1;
-                            } else $value = 0;
+                            } else {
+                                $value = 0;
+                            }
                             echo "<section id='form-check'>\n";
                             if ($multipleChoice) {
                                 // echo "<input type='checkbox' name='$answerColumnName' id='$answerColumnName+$i' value='$value'>\n";
