@@ -1,57 +1,18 @@
-# MySQL exercise with PDO
+Projekt Nr. 8
+# Trivia Quiz Plus
 
-## Start
-Extending the functionality and groom the visual appearance of the first version of the Trivia Quiz
-## Mockup :
+## Figma-Link
+https://www.figma.com/file/rmiZ5apLzKXWvDVfVIpgZu/Trivia-Quiz-Plus?type=design&node-id=11%3A4&mode=design&t=PTq90p1zHJoGXtMP-1
 
-## Design and Visualization:
+## Datenbank
+~/database/
+  question.sql
+  answer.sql
 
-## Functionality:
+## Files & Folders
+~/index.php
 
+~/includes/
+  question.php
+  report.php
 
-
-
-### SMTP check for mail-server:
-telnet smtp-relay.brevo.com 587, 2525, or 465
-link :
-https://github.com/PHPMailer/PHPMailer/blob/master/README.md
-
-### Docker information and commands:
-
-1. start the Container:
-
-```bash
-docker compose up
-```
-
-2. stop the Container:
-
-```bash
-docker compose down
-```
-
-3. open phpMyAdmin, URL:
-
-```bash
-http://localhost:8080/
-```
-
-4. open index.php , URL:
-
-```bash
-http://localhost:8000/
-```
-
-**Stop all Docker Containers plus extra commands**
-
-```bash
-docker stop $(docker ps -a -q)
-```
-
-```bash
-docker rm $(docker ps -a -q)
-```
-
-```bash
-docker-compose down --rmi all -v
-```
