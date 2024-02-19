@@ -113,8 +113,8 @@ function test_input($data)
     return $data;
 }
 
-if (isset($_POST['email']) && !empty($_POST['email'])){
-if (isset($_POST['email'])) {
+if (isset($_POST['email']) && !empty($_POST['email'])) {
+
     newsletter($dbConnection);
 }
 
@@ -168,7 +168,8 @@ function newsletter($dbConnection)
 $emailErr;
 
 
-function callEmails($dbConnection) {
+function callEmails($dbConnection)
+{
     $querySelect = "SELECT * FROM `newsletter`";
     // all data with 
     $sqlStatement = $dbConnection->query($querySelect);
@@ -176,17 +177,19 @@ function callEmails($dbConnection) {
     return $rows;
 }
 
-function takeStatisticSubject($topic, $dbConnection){
+function takeStatisticSubject($topic, $dbConnection)
+{
 
-        $query = "SELECT * FROM `statistic`
+    $query = "SELECT * FROM `statistic`
         WHERE `topic` = '$topic'";
-        $sqlStatement = $dbConnection->prepare($query);
-        $sqlStatement->execute();
-        $fetchColumn = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
-        return $fetchColumn;
+    $sqlStatement = $dbConnection->prepare($query);
+    $sqlStatement->execute();
+    $fetchColumn = $sqlStatement->fetchAll(PDO::FETCH_ASSOC);
+    return $fetchColumn;
 }
 
-function takeSatatisticsMain($dbConnection) {
+function takeSatatisticsMain($dbConnection)
+{
     $query = "SELECT `topic`, `repeated` FROM `statistic`
     ORDER BY `repeated` ASC LIMIT 3";
     $sqlStatement = $dbConnection->prepare($query);
