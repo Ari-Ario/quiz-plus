@@ -3,11 +3,16 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-session_destroy();
+// session_destroy();
 
 include_once "includes/db.php";
-
-
+// if (session_status() === PHP_SESSION_NONE) {
+//     session_start();
+// }
+if (!isset($_SESSION['username'])) {
+    header('location: index.php');
+    return false;
+}
 ?>
 
 <!DOCTYPE html>
@@ -32,9 +37,14 @@ include_once "includes/db.php";
         <div class="main-container">
             <main>
 
+
                 <div class="title">
                     <h1 class="title">ARAM</h1>
-                    <p class="slogan">Erweitere dein <br> Allgemein Wissen <br> mit ARAM</p>
+                    <p class="slogan">Welcome <?php if (isset($_SESSION['username'])) {
+                                                    echo strtoupper($_SESSION['username']);
+                                                } ?>
+                        <br> pick a topic <br> and Enjoy!
+                    </p>
                 </div>
                 <form class="start-quiz" action="/includes/question.php" method="GET">
                     <div class="in-group">
@@ -64,6 +74,12 @@ include_once "includes/db.php";
                 </form>
                 <form class="debug-form" action="/includes/test.php" method="POST">
                     <input type="submit" value="tables">
+                </form>
+                <form class="start-quiz" action="auth/logout.php" method="get">
+                    <div style="margin-top: 1rem;" class="in-group">
+                        <input type="submit" value="log out">
+                    </div>
+
                 </form>
                 <div class="beliebte-themen">
                     <p class="graph-slogan">Beliebte Themen </p>
