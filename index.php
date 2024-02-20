@@ -51,7 +51,11 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
 
                 <form class="start-quiz" action=" auth/login.php" method="POST">
 
-                    <?php echo "<p class='error'>" . $_SESSION['credentialErrors'][3]  . "</p>" ?? ''; ?>
+                    <?php
+                    if (isset($_SESSION['credentialErrors'][3])) {
+                        echo "<p class='error'>" . $_SESSION['credentialErrors'][3]  . "</p>" ?? '';
+                    }
+                    ?>
                     <div class="in-group">
                         <label for="username">username</label>
                         <input type="text" name="username" id="username">
@@ -70,7 +74,7 @@ $result = $query->fetchAll(PDO::FETCH_ASSOC);
                         <input type="submit" value="login" name="submit">
                     </div>
                 </form>
-                <a class="sign-up" href="signup.php">Don't have an account yet? sign up now!</a>
+                <a class="info" href="signup.php">Don't have an account yet? sign up now!</a>
 
             </main>
         </div>

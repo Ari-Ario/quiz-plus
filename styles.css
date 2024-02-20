@@ -575,6 +575,11 @@ canvas {
 
 }
 
+.info{
+  font-size: 1.6rem;
+  color: red !important;
+}
+
 /* dont show hamburger menu items incase you increase window width after clicking the hamburger symbol */
 @media screen and (min-width: 600px) {
   .navbar-hamburger {

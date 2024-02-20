@@ -50,8 +50,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="in-group">
                         <label for="username">username</label>
                         <input type="text" name="username" id="username">
-                        <?php if (isset($_SESSION['credentialErrors'])) {
+                        <?php if (isset($_SESSION['credentialErrors'][0])) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][0]  . "</p>" ?? '';
+                        } elseif ($_SESSION['credentialErrors'][4]) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][4]  . "</p>" ?? '';
                         }  ?>
                     </div>
@@ -68,8 +69,9 @@ if (session_status() === PHP_SESSION_NONE) {
                     <div class="in-group">
                         <label for="email">e-mail</label>
                         <input type="email" name="email" id="email">
-                        <?php if (isset($_SESSION['credentialErrors'])) {
+                        <?php if (isset($_SESSION['credentialErrors'][2])) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][2]  . "</p>" ?? '';
+                        } elseif ($_SESSION['credentialErrors'][5]) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][5]  . "</p>" ?? '';
                         }  ?>
                     </div>
@@ -78,7 +80,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
                         <label for="password">password</label>
                         <input type="password" name="password" id="password">
-                        <?php if (isset($_SESSION['credentialErrors'])) {
+                        <?php if (isset($_SESSION['credentialErrors'][0])) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][1]  . "</p>" ?? '';
                         }  ?>
                     </div>
@@ -87,7 +89,7 @@ if (session_status() === PHP_SESSION_NONE) {
                     </div>
 
                 </form>
-                <a href="index.php">home</a>
+                <a class="info" href="index.php">Log In</a>
 
             </main>
         </div>
@@ -111,7 +113,7 @@ $_SESSION['credentialErrors'][1] = "";
 $_SESSION['credentialErrors'][2] = "";
 $_SESSION['credentialErrors'][4] = "";
 $_SESSION['credentialErrors'][5] = "";
-// $_SESSION["credentialErrors"]['created'] = "";
+$_SESSION["credentialErrors"]['created'] = "";
 
 
 

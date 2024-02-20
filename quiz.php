@@ -3,6 +3,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+include_once "auth/guard.php";
 session_destroy();
 
 include_once "includes/db.php";
@@ -34,7 +35,12 @@ include_once "includes/db.php";
 
                 <div class="title">
                     <h1 class="title">ARAM</h1>
-                    <p class="slogan">Erweitere dein <br> Allgemein Wissen <br> mit ARAM</p>
+                    <p class="slogan">Welcome <?php
+                                                if (isset($_SESSION['username'])) {
+                                                    echo strtoupper($_SESSION['username']);
+                                                }
+
+                                                ?> <br> pick a Topic <br> and enjoy!</p>
                 </div>
                 <form class="start-quiz" action="/includes/question.php" method="GET">
                     <div class="in-group">

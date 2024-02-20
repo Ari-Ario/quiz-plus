@@ -2,7 +2,7 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
+include_once "../auth/guard.php";
 include "data-collector.php";
 ?>
 
