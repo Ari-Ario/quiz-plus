@@ -3,6 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once "../auth/guard.php";
+include_once "../auth/login.php";
+
 include "data-collector.php";
 ?>
 

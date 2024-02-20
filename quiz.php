@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 include_once "auth/guard.php";
-session_destroy();
+
 
 include_once "includes/db.php";
 
@@ -66,6 +66,12 @@ include_once "includes/db.php";
                         <input type="submit" id="start-btn" value="Start Quiz">
                     </div>
 
+
+                </form>
+                <form class="start-quiz" action="auth/logout.php" method="get">
+                    <div style="margin-top: 1rem;" class="in-group">
+                        <input type="submit" value="log out">
+                    </div>
 
                 </form>
                 <form class="debug-form" action="/includes/test.php" method="POST">

@@ -71,7 +71,7 @@ if (session_status() === PHP_SESSION_NONE) {
                         <input type="email" name="email" id="email">
                         <?php if (isset($_SESSION['credentialErrors'][2])) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][2]  . "</p>" ?? '';
-                        } elseif ($_SESSION['credentialErrors'][5]) {
+                        } elseif (isset($_SESSION['credentialErrors'][5])) {
                             echo "<p class='error'>" . $_SESSION['credentialErrors'][5]  . "</p>" ?? '';
                         }  ?>
                     </div>

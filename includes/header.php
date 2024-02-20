@@ -4,7 +4,7 @@
 
 
             <li style="display: flex; align-items: center">
-                <a href="../index.php">ARAM</a>
+                <a href="../quiz.php">ARAM</a>
             </li>
         </ul>
         <ul class="hamburger-icon" id="hamburger-icon" style="display: flex">
